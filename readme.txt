@@ -4,7 +4,7 @@ Tags: sms, woocommerce, sendsms, notifications, order
 Requires at least: 4.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 2.0.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,12 +56,26 @@ Yes. Enable the "Opt-out in cart" setting under Configuration; a checkbox appear
 5. Send a test SMS
 6. Send a single SMS from inside an order
 
-== Changelog ==
-= 1.0.0 =
-Initial release on WordPress.org. Previously distributed via [sendSMS-RO/sendsms-woocommerce-5.5.1](https://github.com/sendSMS-RO/sendsms-woocommerce-5.5.1) (now archived). This release corresponds to v1.4.3 of the legacy distribution and brings:
+== Upgrade Notice ==
+= 2.0.0 =
+Full rewrite under the SendSMS\\ForWooCommerce namespace. Settings and SMS history carry over automatically. WordPress.org launch.
 
-* HPOS compatibility (declared via `FeaturesUtil::declare_compatibility`).
-* Order-metabox single-send registered on both legacy and HPOS Orders screens.
-* Security hardening: AJAX nonces + capability checks, CSRF-protected test-send form, settings password no longer rendered back into HTML, History page stored-XSS escaping, HTTPS balance check.
-* In-memory campaign CSV (no `batches/` filesystem write).
-* Full WordPress.org Plugin Check compliance pass.
+== Changelog ==
+= 2.0.0 =
+Full architectural rewrite. The plugin now follows modern WordPress conventions while preserving every existing setting and the SMS history database table — upgrading from 1.x is transparent.
+
+* Code reorganised into a PSR-4 namespace tree (`SendSMS\\ForWooCommerce\\…`) with one class per responsibility (API client, settings reader, order listeners, admin pages, AJAX handlers).
+* Settings page redesigned with three tabs: **Account**, **Customer notifications**, **Owner notification**. The per-status template list is now a single table.
+* Admin scripts moved to `assets/js/` and enqueued only on the relevant pages.
+* New extensibility hooks for third-party developers: `sendsms_for_woocommerce_should_send`, `sendsms_for_woocommerce_message`, `sendsms_for_woocommerce_recipient_phone`, and `sendsms_for_woocommerce_after_send`.
+* Continued from the 1.4.3 security baseline (legacy repository now archived):
+  * Single-send AJAX endpoint guarded with nonce + `manage_woocommerce` capability.
+  * Test-send form CSRF-protected.
+  * Stored password never rendered back into the settings form.
+  * Stored-XSS escaping on every column of the History page.
+  * HPOS-aware throughout (declared via `FeaturesUtil::declare_compatibility`).
+  * In-memory CSV for campaign sends (no `batches/` filesystem write).
+* Minimum PHP raised to 7.4; verified on PHP 7.4 and PHP 8.3.
+
+= 1.0.0 =
+Internal mirror of the legacy 1.4.3 release. Not distributed via WordPress.org.
