@@ -29,7 +29,7 @@
 
 			$.post(cfg.ajaxUrl, data, function (response) {
 				$btn.html(cfg.send || 'Send').removeAttr('disabled');
-				$('#sendsms-fwc-mb-phone').val('');
+				// Leave the phone field alone — it's the order's billing phone, useful for follow-ups.
 				$('#sendsms-fwc-mb-content').val('').trigger('input');
 				$('#sendsms-fwc-mb-short').prop('checked', false);
 				$('#sendsms-fwc-mb-gdpr').prop('checked', false);

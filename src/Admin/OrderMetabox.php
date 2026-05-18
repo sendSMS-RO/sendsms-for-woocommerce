@@ -64,17 +64,19 @@ final class OrderMetabox {
 	 * @return void
 	 */
 	public function render( $post_or_order ): void {
-		$order_id = $post_or_order instanceof WC_Order ? $post_or_order->get_id() : (int) ( $post_or_order->ID ?? 0 );
-		if ( ! $order_id ) {
+		$order = $post_or_order instanceof WC_Order ? $post_or_order : wc_get_order( (int) ( $post_or_order->ID ?? 0 ) );
+		if ( ! $order ) {
 			return;
 		}
+		$order_id      = $order->get_id();
+		$billing_phone = (string) $order->get_billing_phone();
 		?>
 		<div class="sendsms-fwc-metabox">
 			<input type="hidden" id="sendsms-fwc-order-id" value="<?php echo esc_attr( (string) $order_id ); ?>" />
 
 			<p>
 				<label for="sendsms-fwc-mb-phone"><?php esc_html_e( 'Phone', 'sendsms-for-woocommerce' ); ?></label><br />
-				<input type="text" id="sendsms-fwc-mb-phone" style="width: 100%;" />
+				<input type="text" id="sendsms-fwc-mb-phone" style="width: 100%;" value="<?php echo esc_attr( $billing_phone ); ?>" />
 			</p>
 
 			<p>

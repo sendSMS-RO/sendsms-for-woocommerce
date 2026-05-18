@@ -3,7 +3,7 @@
  * Plugin Name:       SendSMS for WooCommerce
  * Plugin URI:        https://www.sendsms.ro/ro/ecommerce/plugin-woocommerce/
  * Description:       Send SMS notifications to your customers on every WooCommerce order status change. Per-status templates, campaign sender, single-order SMS, full history.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Requires at least: 4.0
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -20,7 +20,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Plugin metadata constants.
-define( 'SENDSMS_FWC_VERSION', '2.0.0' );
+define( 'SENDSMS_FWC_VERSION', '2.0.1' );
 define( 'SENDSMS_FWC_FILE', __FILE__ );
 define( 'SENDSMS_FWC_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SENDSMS_FWC_URL', plugin_dir_url( __FILE__ ) );

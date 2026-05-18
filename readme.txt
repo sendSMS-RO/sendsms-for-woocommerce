@@ -4,7 +4,7 @@ Tags: sms, woocommerce, sendsms, notifications, order
 Requires at least: 4.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,19 +48,19 @@ PHP 7.4 through PHP 8.3+. Tested on PHP 7.4 and PHP 8.3 against WordPress 7.0 an
 = Can my customers opt out of SMS notifications? =
 Yes. Enable the "Opt-out in cart" setting under Configuration; a checkbox appears at checkout. Customers who tick it never receive automated SMS for that order.
 
-== Screenshots ==
-1. Plugin landing page
-2. Configuration page with status templates
-3. SMS history
-4. Campaign sender
-5. Send a test SMS
-6. Send a single SMS from inside an order
-
 == Upgrade Notice ==
+= 2.0.1 =
+Polish pass after the 2.0.0 rewrite. Fixes a settings-page bug where saving one tab wiped the values stored on other tabs.
+
 = 2.0.0 =
 Full rewrite under the SendSMS\\ForWooCommerce namespace. Settings and SMS history carry over automatically. WordPress.org launch.
 
 == Changelog ==
+= 2.0.1 =
+* Settings page: fixed a bug where saving any tab wiped the values stored on the other tabs. Each tab now merges into the existing option instead of overwriting it.
+* Order metabox: the Phone field is now pre-filled with the order's billing phone, and is no longer cleared after a successful send so follow-up messages don't require retyping the number.
+* Settings page: added cell padding on the per-status template table so column headers and labels are no longer flush against the edges.
+
 = 2.0.0 =
 Full architectural rewrite. The plugin now follows modern WordPress conventions while preserving every existing setting and the SMS history database table — upgrading from 1.x is transparent.
 
