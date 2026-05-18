@@ -1,0 +1,528 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SendSMS for WooCommerce 1.4.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-27 12:35+0000\n"
+"PO-Revision-Date: 2021-05-24 15:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: Romanian\n"
+"Language: ro_RO\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 :(((n%100>19)||(( n%100==0)&&(n!"
+"=0)))? 2 : 1));\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.0; wp-5.6\n"
+"X-Domain: sendsms-for-woocommerce"
+
+#: wc_sendsms.php:920
+msgid " (This is just an estimation, and not the actual price)"
+msgstr "(Aceasta este doar o estimare, și nu prețul real)"
+
+#: wc_sendsms.php:364
+msgid " euro in your sendSMS account."
+msgstr " euro in contul tau sendSMS"
+
+#: wc_sendsms.php:223
+msgid "\"Message: Completed\""
+msgstr "\"Mesaj: Completed\""
+
+#: wc_sendsms.php:146
+msgid "&nbsp;I do not want to receive an SMS with the status of the order"
+msgstr "&nbsp;Nu doresc sa primesc SMS cu starea comenzii"
+
+#: wc_sendsms.php:1174
+msgid "Activated"
+msgstr "Activat"
+
+#: wc_sendsms.php:307
+msgid "Add unsubscribe link?"
+msgstr "Adăugare link de dezabonare?"
+
+#: wc_sendsms.php:495 wc_sendsms.php:1176 wc_sendsms.php:1337
+msgid ""
+"Add unsubscribe link? (You must specify the {gdpr} key message. The {gdpr} "
+"key will be automatically replaced with the unique confirmation link. If the "
+"{gdpr} key is not specified, the confirmation link will be placed at the end "
+"of the message.)"
+msgstr ""
+"Adăugare link de dezabonare? (Trebuie sa specificați mesajul cheie {gdpr}. "
+"Cheia {gdpr} va fi inlocuită automat cu linkul unic de confirmare. Dacă nu "
+"este specificată cheia {gdpr}, linkul de confirmare va fi plasat la "
+"sfârșitul mesajului.)"
+
+#: HistoryListTable.php:13
+msgid "Answer"
+msgstr "Răspuns"
+
+#: wc_sendsms.php:880
+msgid "Batch Campaign"
+msgstr "Campanie Batch"
+
+#: wc_sendsms.php:623
+msgid "Billing County (leave blank to select all counties):"
+msgstr "Județ facturare (lasă gol pentru a selecta toate judetele):"
+
+#: wc_sendsms.php:195 wc_sendsms.php:196
+msgid "Campaign"
+msgstr "Campanie"
+
+#: wc_sendsms.php:177 wc_sendsms.php:178
+msgid "Configuration"
+msgstr "Configurare"
+
+#: HistoryListTable.php:15
+msgid "Content"
+msgstr "Conținut"
+
+#: wc_sendsms.php:272
+msgid "Country Code"
+msgstr "Codul Tarii"
+
+#: HistoryListTable.php:17
+msgid "Date"
+msgstr "Data"
+
+#: HistoryListTable.php:14
+msgid "Details"
+msgstr "Detalii"
+
+#: wc_sendsms.php:687
+msgid "Estimate the price"
+msgstr "Estimează prețul"
+
+#: wc_sendsms.php:225
+msgid "Example message:"
+msgstr "Exemplu mesaj:"
+
+#: wc_sendsms.php:1185
+msgid "Example: "
+msgstr "Exemplu: "
+
+#: wc_sendsms.php:223
+msgid ""
+"Example: If you want to send a message when the status of the order changes "
+"to Completed, then you will need to fill in a message in the text field."
+msgstr ""
+"Exemplu: Dacă doriți să trimiteți un mesaj când se schimbă statusul comenzii "
+"în finalizată (Completed) atunci va trebui să completați un mesaj în câmpul "
+"text"
+
+#: wc_sendsms.php:647
+msgid "Filter"
+msgstr "Filtrează"
+
+#: wc_sendsms.php:653
+msgid "Filter results:"
+msgstr "Rezultate filtru:"
+
+#: wc_sendsms.php:875
+msgid "Go to hub.sendsms.ro"
+msgstr "Accesati hub.sendsms.ro"
+
+#: wc_sendsms.php:220 wc_sendsms.php:221
+msgid "here"
+msgstr "aici"
+
+#: wc_sendsms.php:225
+msgid ""
+"Hi {billing_first_name}. Your order with order {order_number} has been "
+"completed."
+msgstr ""
+"Salut {billing_first_name}. Comanda ta cu numărul {order_number} a fost "
+"finalizată."
+
+#: wc_sendsms.php:186 wc_sendsms.php:187
+msgid "Historic"
+msgstr "Istoric"
+
+#. URI of the plugin
+msgid "https://www.sendsms.ro/ro/ecommerce/plugin-woocommerce/"
+msgstr "https://www.sendsms.ro/ro/ecommerce/plugin-woocommerce/"
+
+#: HistoryListTable.php:10
+msgid "ID"
+msgstr "ID"
+
+#: wc_sendsms.php:726 wc_sendsms.php:1378
+msgid "It's being sent..."
+msgstr "Se trimite..."
+
+#: wc_sendsms.php:991
+msgid "maximum 11 alpha-numeric characters"
+msgstr "maxim 11 caractere alfa numerice"
+
+#: wc_sendsms.php:321 wc_sendsms.php:499
+msgid "Message"
+msgstr "Mesaj"
+
+#: wc_sendsms.php:661 wc_sendsms.php:1339
+msgid "Message:"
+msgstr "Mesaj:"
+
+#: wc_sendsms.php:1174
+msgid "Message: "
+msgstr "Mesaj: "
+
+#: wc_sendsms.php:597
+msgid "Minimum amount per order:"
+msgstr "Suma minimă pe comandă:"
+
+#: wc_sendsms.php:222
+msgid ""
+"On the settings page, below the credentials, you'll find a text field for "
+"each status available in WooCommerce. You will need to enter a message for "
+"the fields to which you want to send the notification. If a field is empty, "
+"then the text message will not be sent."
+msgstr ""
+"În pagina de setări, sub datele de autentificare, veți găsi câte un câmp "
+"text pentru fiecare status disponibil în WooCommerce. Va trebui să "
+"introduceți un mesaj pentru câmpurile la care doriți să se trimită sms de "
+"înștiințare. Dacă un câmp va fi gol, atunci sms-ul nu se va trimite."
+
+#: wc_sendsms.php:328
+msgid "Opt-out in cart"
+msgstr "Opt-out în cos"
+
+#: wc_sendsms.php:258
+msgid "Password / API Key"
+msgstr "Parola / API Key"
+
+#: wc_sendsms.php:594
+msgid "Period"
+msgstr "Perioada"
+
+#: HistoryListTable.php:11
+msgid "Phone"
+msgstr "Telefon"
+
+#: wc_sendsms.php:487
+msgid "Phone number"
+msgstr "Număr de telefon"
+
+#: wc_sendsms.php:653
+msgid "phone number(s)"
+msgstr "numere de telefon"
+
+#: wc_sendsms.php:667
+msgid "Phone numbers:"
+msgstr "Numere de telefon:"
+
+#: wc_sendsms.php:1333
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: wc_sendsms.php:925
+msgid "Please fill the message box first"
+msgstr "Va rugam sa completati mai intai caseta de mesaj"
+
+#: wc_sendsms.php:922
+msgid "Please send a message first"
+msgstr "Va rugam sa trimiteti mai intai un mesaj"
+
+#: wc_sendsms.php:1047
+msgid "Please use only links starting with https:// or http://"
+msgstr "Vă rugăm sa folosiți doar linkuri care incep cu https:// sau http://"
+
+#: wc_sendsms.php:1130
+msgid "Refund request for order {order_number} has been completed."
+msgstr ""
+"Cererea de restituire pentru comanda cu numarul {order_number} a fost "
+"finalizata. NumeSite.ro"
+
+#: wc_sendsms.php:374
+msgid "Save"
+msgstr "Salvează"
+
+#: wc_sendsms.php:947
+msgid "Search"
+msgstr "Caută"
+
+#: wc_sendsms.php:204 wc_sendsms.php:205
+msgid "Send a test"
+msgstr "Trimite un test"
+
+#: wc_sendsms.php:293
+msgid "Send an SMS to each new order"
+msgstr "Trimitere SMS la fiecare comandă nouă"
+
+#: wc_sendsms.php:1321
+msgid "Send SMS"
+msgstr "Send SMS"
+
+#: wc_sendsms.php:670
+msgid "Send SMS to every number."
+msgstr "Trimiteti SMS la fiecare numar."
+
+#: wc_sendsms.php:507 wc_sendsms.php:686 wc_sendsms.php:762 wc_sendsms.php:1344
+#: wc_sendsms.php:1390
+msgid "Send the message"
+msgstr "Trimite mesajul"
+
+#. Name of the plugin
+#: wc_sendsms.php:167 wc_sendsms.php:168
+msgid "SendSMS"
+msgstr "SendSMS"
+
+#. Author of the plugin
+msgid "sendSMS"
+msgstr "sendSMS"
+
+#: wc_sendsms.php:583
+msgid "SendSMS - Campaign"
+msgstr "SendSMS - Campanie"
+
+#: wc_sendsms.php:939
+msgid "SendSMS - Historic"
+msgstr "SendSMS - Istoric"
+
+#: wc_sendsms.php:353
+msgid "SendSMS - Login data"
+msgstr "SendSMS - Date autentificare"
+
+#: wc_sendsms.php:482
+msgid "SendSMS - Send an SMS test"
+msgstr "SendSMS - Trimite un SMS de test"
+
+#: wc_sendsms.php:216
+msgid "SendSMS for WooCommerce"
+msgstr "SendSMS pentru WooCommerce"
+
+#: wc_sendsms.php:265
+msgid "Shipper label"
+msgstr "Label"
+
+#: wc_sendsms.php:300
+msgid "Short URL?"
+msgstr "Micșorare url?"
+
+#: wc_sendsms.php:491 wc_sendsms.php:1175 wc_sendsms.php:1335
+msgid "Short URL? (Please use only links starting with https:// or http://)"
+msgstr ""
+"Micșorare url? (Vă rugăm sa folosiți doar linkuri care incep cu https:// sau "
+"http://)"
+
+#: wc_sendsms.php:220
+msgid "Sign up for FREE"
+msgstr "Înregistrați-vă GRATUIT"
+
+#: wc_sendsms.php:286
+msgid "Simulation phone number"
+msgstr "Număr telefon simulare"
+
+#: wc_sendsms.php:1434
+msgid "SMS message sent to "
+msgstr "Mesaj SMS trimis către "
+
+#: wc_sendsms.php:279
+msgid "SMS sending simulation"
+msgstr "Simulare trimitere SMS"
+
+#: HistoryListTable.php:12
+msgid "Status"
+msgstr "Status"
+
+#: wc_sendsms.php:335
+msgid "Status Updates"
+msgstr "Statusuri"
+
+#: wc_sendsms.php:889
+msgid "Success"
+msgstr "Succes"
+
+#: wc_sendsms.php:527 wc_sendsms.php:711 wc_sendsms.php:1218
+#: wc_sendsms.php:1363
+msgid "The approximate number of messages: "
+msgstr "Numărul aproximativ de mesaje: "
+
+#: wc_sendsms.php:920
+#| msgid "The estimated price is "
+msgid "The estimate price is: "
+msgstr "Prețul estimativ este de "
+
+#: wc_sendsms.php:502 wc_sendsms.php:529 wc_sendsms.php:663 wc_sendsms.php:713
+#: wc_sendsms.php:1221 wc_sendsms.php:1342 wc_sendsms.php:1365
+msgid "The field is empty"
+msgstr "Câmpul este gol"
+
+#: wc_sendsms.php:226
+msgid ""
+"The message entered must not contain diacritics. If they are entered the "
+"letters with diacritics will be replaced with their equivalent without "
+"diacritics."
+msgstr ""
+"Mesajul introdus nu trebuie să conțină diacritice. Dacă acestea sunt "
+"introduse literele cu diacritice vor fi înlocuite cu echivalentul lor fără "
+"diacritice."
+
+#: wc_sendsms.php:1436
+msgid "The message was sent"
+msgstr "Mesajul a fost trimis"
+
+#: wc_sendsms.php:466
+msgid "The message was sent."
+msgstr "Mesajul a fost trimis."
+
+#: wc_sendsms.php:1129
+msgid ""
+"The order with the number {order_number} has been canceled. For details: "
+"sitename.com"
+msgstr ""
+"Comanda cu numarul {order_number} a fost anulata. Pentru detalii: NumeSite.ro"
+
+#: wc_sendsms.php:1125
+msgid ""
+"The order with the number {order_number} has been placed successfully and "
+"will be shipped as soon as we receive your payment in the amount of "
+"{order_total} EURO. sitename.com"
+msgstr ""
+"Comanda cu numarul {order_number} a fost plasata cu succes si va fi "
+"expediata imediat ce primim plata dvs in valoare de {order_total} RON. "
+"NumeSite.ro"
+
+#: wc_sendsms.php:1126
+msgid ""
+"The order with the number {order_number} is being processed and is to be "
+"delivered. sitename.com"
+msgstr ""
+"Comanda cu numarul {order_number} este in curs de procesare si urmeaza a fi "
+"livrata. NumeSite.ro"
+
+#: wc_sendsms.php:1127
+msgid ""
+"The order with the number {order_number} is pending, one or more products "
+"are missing"
+msgstr ""
+"Comanda cu numarul {order_number} este in asteptare, unul sau mai multe "
+"produse lipsesc"
+
+#: wc_sendsms.php:1128
+msgid ""
+"The order {order_number} has been prepared and will be delivered to the "
+"Courier. Payment: {order_total} LEI. Thank you, sitename.com"
+msgstr ""
+"Comanda cu numarul {order_number} a fost plasata cu succes si va fi "
+"expediata imediat ce primim plata dvs in valoare de {order_total} RON. "
+"NumeSite.ro"
+
+#: wc_sendsms.php:314
+msgid "The phone number where the messages will be sent"
+msgstr "Numărul de telefon unde vor fi trimise mesajele"
+
+#: wc_sendsms.php:366
+msgid "The plugin is not configured."
+msgstr "Modulul nu este configurat corect."
+
+#: wc_sendsms.php:601
+msgid "The purchased product (leave blank to select all products):"
+msgstr "Produs cumpărat (lasă gol pentru a selecta toate produsele):"
+
+#: wc_sendsms.php:470
+msgid "The validated phone number is empty!"
+msgstr "Numărul de telefon validat este gol!"
+
+#: wc_sendsms.php:1131
+msgid ""
+"There is a problem processing the payment for the order with the number "
+"{order_number}. Please contact us."
+msgstr ""
+"Exista o problema cu procesarea platii pentru comanda cu numarul "
+"{order_number}. Va rugam sa ne contactati. NumeSite.ro"
+
+#: wc_sendsms.php:218
+msgid ""
+"To use the module, please enter your credentials on the configuration page."
+msgstr ""
+"Pentru a folosi modulul, vă rugăm să introduceți datele de autentificare în "
+"pagina de configurare."
+
+#: HistoryListTable.php:16
+msgid "Type"
+msgstr "Tip"
+
+#. Description of the plugin
+msgid ""
+"Use our SMS shipping solution to deliver the right information at the right "
+"time. Give your customers a superior experience!"
+msgstr ""
+"Folositi solutia noastra de expedieri SMS pentru a livra informatia corecta "
+"la momentul potrivit. Oferiti clientilor dvs. o experienta superioara!"
+
+#: wc_sendsms.php:251
+msgid "Username"
+msgstr "Nume utilizator"
+
+#: wc_sendsms.php:1100 wc_sendsms.php:1133
+msgid "Variable available:"
+msgstr "Variabile disponibile:"
+
+#: wc_sendsms.php:879
+msgid "We created your campaign. Go and check the batch called: "
+msgstr "V-am creat campania. Mergeti si verificati batch-ul numit: "
+
+#: wc_sendsms.php:224
+msgid ""
+"You can enter variables that will be filled in according to the order data."
+msgstr ""
+"Puteți introduce variabile care se vor completa în funcție de datele de "
+"comandă."
+
+#: wc_sendsms.php:221
+msgid "You can find out more about sendSMS"
+msgstr "Mai multe detalii despre sendSMS puteți afla"
+
+#: wc_sendsms.php:1422
+msgid "You did not enter a password"
+msgstr "Nu ai introdus o parola"
+
+#: wc_sendsms.php:824 wc_sendsms.php:1416
+msgid "You did not enter a username"
+msgstr "Nu ai introdus un nume de utilizator"
+
+#: wc_sendsms.php:219
+msgid "You don't have a sendSMS account?"
+msgstr "Nu ai un cont de sendSMS?"
+
+#: wc_sendsms.php:364
+msgid "You have "
+msgstr "Mai ai "
+
+#: wc_sendsms.php:475
+msgid "You have not configured the module!"
+msgstr "Nu ai configurat modulul"
+
+#: wc_sendsms.php:443
+msgid "You have not entered a message!"
+msgstr "Nu ai introdus mesajul!"
+
+#: wc_sendsms.php:830
+msgid "You have not entered a password"
+msgstr "Nu ai introdus parola"
+
+#: wc_sendsms.php:438
+msgid "You have not entered your phone number!"
+msgstr "Nu ai introdus numărul tău de telefon"
+
+#: wc_sendsms.php:807
+msgid "You must choose at least one phone number."
+msgstr "Trebuie sa alegeti cel putin un numar de telefon."
+
+#: wc_sendsms.php:1438
+msgid "You must complete the message and a phone number"
+msgstr "Trebuie să completați mesajul și un număr de telefon"
+
+#: wc_sendsms.php:812
+msgid "You must complete the message first."
+msgstr "Mai intai trebuie sa completati mesajul."
+
+#: wc_sendsms.php:1059
+msgid ""
+"You must specify the key message {gdpr}. The {gdpr} key will be "
+"automatically replaced with the unique confirmation link. If the {gdpr} key "
+"is not specified, the confirmation link will be placed at the end of the "
+"message."
+msgstr ""
+"Trebuie sa specificați mesajul cheie {gdpr}. Cheia {gdpr} va fi inlocuită "
+"automat cu linkul unic de confirmare. Dacă nu este specificată cheia {gdpr}, "
+"linkul de confirmare va fi plasat la sfârșitul mesajului.)"
