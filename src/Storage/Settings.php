@@ -202,27 +202,72 @@ final class Settings {
 	}
 
 	/**
-	 * Settings API validate callback.
+	 * Map of settings-page tab → keys that tab manages.
 	 *
-	 * Two behaviours preserved from v1.x:
-	 *  - Preserve the stored password if the submitted value is empty
-	 *    (the password field is never re-rendered into HTML).
-	 *  - Booleanise the "1"/"" convention for checkbox-style keys.
+	 * Used by {@see sanitize()} to merge a per-tab form submission with the
+	 * existing stored options, so saving the Account tab doesn't wipe Customer
+	 * or Owner settings.
 	 *
-	 * @param array|null $input Incoming form values.
-	 * @return array Sanitised options.
+	 * @return array<string, string[]>
+	 */
+	public static function keys_per_tab(): array {
+		return array(
+			'account'  => array( 'username', 'password', 'from', 'cc', 'simulation', 'simulation_number' ),
+			'customer' => array( 'optout', 'enabled', 'short', 'gdpr', 'content' ),
+			'owner'    => array( 'send_to_owner', 'send_to_owner_number', 'send_to_owner_content', 'send_to_owner_short', 'send_to_owner_gdpr' ),
+		);
+	}
+
+	/**
+	 * Settings API sanitize callback.
+	 *
+	 * The settings page is rendered one tab at a time, so a form submission
+	 * only contains the keys that belong to the active tab. To prevent the
+	 * other tabs' values from being wiped, we:
+	 *
+	 *   1. Load the current stored options.
+	 *   2. Identify the active tab from the hidden `sendsms_fwc_active_tab`
+	 *      input the form emits.
+	 *   3. For each key that tab manages: copy the submitted value if present,
+	 *      or unset it if absent (so unchecked checkboxes clear correctly).
+	 *   4. Leave every other tab's keys untouched.
+	 *
+	 * Also preserves the stored password when the password field is left empty.
+	 *
+	 * @param array|null $input Submitted values from the settings form.
+	 * @return array Merged options to persist.
 	 */
 	public static function sanitize( $input ): array {
-		$input = is_array( $input ) ? $input : array();
-
-		// Preserve stored password if the field is left empty.
-		if ( empty( $input['password'] ) ) {
-			$existing = get_option( self::OPTION_KEY );
-			if ( is_array( $existing ) && ! empty( $existing['password'] ) ) {
-				$input['password'] = $existing['password'];
-			}
+		$input    = is_array( $input ) ? $input : array();
+		$existing = get_option( self::OPTION_KEY, array() );
+		if ( ! is_array( $existing ) ) {
+			$existing = array();
 		}
 
-		return $input;
+		// Preserve stored password if the field was left empty.
+		if ( empty( $input['password'] ) && ! empty( $existing['password'] ) ) {
+			$input['password'] = $existing['password'];
+		}
+
+		// Identify which tab submitted the form. The hidden input is emitted by SettingsPage::render().
+		// Nonce was already verified by WP's options.php handler before this callback runs.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$active_tab = isset( $_POST['sendsms_fwc_active_tab'] ) ? sanitize_key( wp_unslash( $_POST['sendsms_fwc_active_tab'] ) ) : '';
+
+		$tab_keys = self::keys_per_tab();
+		if ( ! isset( $tab_keys[ $active_tab ] ) ) {
+			// Unknown / missing tab marker. Defensive: leave the option untouched.
+			return $existing;
+		}
+
+		$merged = $existing;
+		foreach ( $tab_keys[ $active_tab ] as $key ) {
+			if ( array_key_exists( $key, $input ) ) {
+				$merged[ $key ] = $input[ $key ];
+			} else {
+				unset( $merged[ $key ] );
+			}
+		}
+		return $merged;
 	}
 }

@@ -103,6 +103,7 @@ final class SettingsPage {
 			<form action="options.php" method="post">
 				<?php
 				settings_fields( 'sendsms_fwc_settings_group' );
+				printf( '<input type="hidden" name="sendsms_fwc_active_tab" value="%s" />', esc_attr( $tab ) );
 				do_settings_sections( 'sendsms_fwc_page_' . $tab );
 				submit_button( __( 'Save changes', 'sendsms-for-woocommerce' ) );
 				?>

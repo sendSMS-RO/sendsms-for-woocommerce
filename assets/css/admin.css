@@ -3,6 +3,14 @@
 
 .sendsms-fwc-page .form-table th { width: 220px; }
 .sendsms-fwc-page .nav-tab-wrapper { margin-bottom: 1.5em; }
+
+/* Per-status template table on the Customer tab. */
+.sendsms-fwc-page table.widefat th,
+.sendsms-fwc-page table.widefat td {
+    padding: 10px 14px;
+    vertical-align: top;
+}
 .sendsms-fwc-page table.widefat td .description { margin-top: 0.25em; }
+
 .sendsms-fwc-length-counter { display: block; color: #646970; }
 .sendsms-fwc-metabox p { margin: 0.75em 0; }
