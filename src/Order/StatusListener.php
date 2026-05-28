@@ -2,13 +2,13 @@
 /**
  * Listens for woocommerce_order_status_changed and sends the customer SMS.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Order;
+namespace Rosendsms\ForWooCommerce\Order;
 
-use Sendsmsro\ForWooCommerce\Api\Client;
-use Sendsmsro\ForWooCommerce\Storage\Settings;
+use Rosendsms\ForWooCommerce\Api\Client;
+use Rosendsms\ForWooCommerce\Storage\Settings;
 use WC_Order;
 
 defined( 'ABSPATH' ) || exit;
@@ -67,7 +67,7 @@ final class StatusListener {
 		}
 
 		// Customer opt-out short-circuit.
-		if ( $order->get_meta( 'sendsmsro_optout' ) ) {
+		if ( $order->get_meta( 'rosendsms_optout' ) ) {
 			return;
 		}
 
@@ -96,7 +96,7 @@ final class StatusListener {
 		 * @param WC_Order $order
 		 * @param array    $context     Includes 'type' (order|new order|test|single order) and 'status'.
 		 */
-		if ( ! apply_filters( 'sendsmsro_should_send', true, $order, $context ) ) {
+		if ( ! apply_filters( 'rosendsms_should_send', true, $order, $context ) ) {
 			return;
 		}
 
@@ -108,7 +108,7 @@ final class StatusListener {
 		 * @param WC_Order $order
 		 * @param array    $context
 		 */
-		$message = (string) apply_filters( 'sendsmsro_message', $message, $order, $context );
+		$message = (string) apply_filters( 'rosendsms_message', $message, $order, $context );
 
 		$phone = $this->resolve_phone( $order, $context );
 		if ( '' === $phone ) {
@@ -149,7 +149,7 @@ final class StatusListener {
 		 * @param WC_Order $order
 		 */
 		do_action(
-			'sendsmsro_after_send',
+			'rosendsms_after_send',
 			array(
 				'phone'    => $phone,
 				'message'  => $message,
@@ -184,6 +184,6 @@ final class StatusListener {
 		 * @param WC_Order $order
 		 * @param array    $context
 		 */
-		return (string) apply_filters( 'sendsmsro_recipient_phone', $phone, $order, $context );
+		return (string) apply_filters( 'rosendsms_recipient_phone', $phone, $order, $context );
 	}
 }

@@ -2,10 +2,10 @@
 /**
  * ISO 3166-1 alpha-2 country code → international dialling code lookup.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce;
+namespace Rosendsms\ForWooCommerce;
 
 defined( 'ABSPATH' ) || exit;
 

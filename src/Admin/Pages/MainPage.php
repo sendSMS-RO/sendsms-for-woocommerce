@@ -2,10 +2,10 @@
 /**
  * "SendSMS" top-level landing page.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Admin\Pages;
+namespace Rosendsms\ForWooCommerce\Admin\Pages;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,7 +21,7 @@ final class MainPage {
 	 */
 	public function render(): void {
 		?>
-		<div class="wrap sendsmsro-page">
+		<div class="wrap rosendsms-page">
 			<h1><?php esc_html_e( 'SendSMS for WooCommerce', 'sendsms-for-woocommerce' ); ?></h1>
 
 			<p><?php esc_html_e( 'To use the plugin, enter your sendsms.ro credentials on the Configuration page.', 'sendsms-for-woocommerce' ); ?></p>
@@ -47,7 +47,7 @@ final class MainPage {
 
 			<p style="text-align: center; margin-top: 2em;">
 				<a href="https://www.sendsms.ro/" target="_blank" rel="noopener noreferrer">
-					<img src="<?php echo esc_url( SENDSMSRO_URL . 'images/sendsms_logo.png' ); ?>" alt="sendSMS" />
+					<img src="<?php echo esc_url( ROSENDSMS_URL . 'images/sendsms_logo.png' ); ?>" alt="sendSMS" />
 				</a>
 			</p>
 		</div>

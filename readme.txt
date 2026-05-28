@@ -4,7 +4,7 @@ Tags: sms, woocommerce, sendsms, notifications, order
 Requires at least: 4.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,8 +76,11 @@ Third-party terms of service and privacy:
 * ISO 27001 certification: https://www.sendsms.ro/en/iso-27001-certified/
 
 == Upgrade Notice ==
+= 2.0.3 =
+Plugin prefix changed to `rosendsms_`. Existing data from any earlier version is migrated automatically on activation — no manual reconfiguration required.
+
 = 2.0.2 =
-Renames all stored option keys, the history table, the order opt-out meta key, AJAX actions, and the PHP namespace to a `sendsmsro_` prefix. Existing settings and SMS history are migrated automatically on activation.
+Renamed all stored option keys, the history table, the order opt-out meta key, AJAX actions, and the PHP namespace to a prefixed scheme. Existing settings and SMS history were migrated automatically on activation.
 
 = 2.0.1 =
 Polish pass after the 2.0.0 rewrite. Fixes a settings-page bug where saving one tab wiped the values stored on other tabs.
@@ -86,9 +89,13 @@ Polish pass after the 2.0.0 rewrite. Fixes a settings-page bug where saving one 
 Full rewrite under the SendSMS\\ForWooCommerce namespace. Settings and SMS history carry over automatically. WordPress.org launch.
 
 == Changelog ==
+= 2.0.3 =
+* Plugin prefix changed to `rosendsms_` (PHP namespace `Rosendsms\\ForWooCommerce`, settings option `rosendsms_options`, history table `{prefix}rosendsms_history`, order opt-out meta key `rosendsms_optout`, AJAX actions `wp_ajax_rosendsms_campaign` / `wp_ajax_rosendsms_single`, extensibility hooks `rosendsms_should_send` / `rosendsms_message` / `rosendsms_recipient_phone` / `rosendsms_after_send`).
+* Migration now handles two earlier naming schemes: v1.x (`wc_sendsms_*` / `wcsendsms_history` / `wc_sendsms_optout`) and v2.0.2 (`sendsmsro_*` / `sendsmsro_history` / `sendsmsro_optout`). Both are migrated to the current `rosendsms_*` names on activation.
+
 = 2.0.2 =
-* All stored names are now `sendsmsro_` / `Sendsmsro\\`-prefixed to satisfy WordPress.org Plugin Directory naming conventions. PHP namespace is `Sendsmsro\\ForWooCommerce`; the settings option is `sendsmsro_options`; the history table is `{prefix}sendsmsro_history`; the order opt-out meta key is `sendsmsro_optout`; the AJAX actions are `wp_ajax_sendsmsro_campaign` and `wp_ajax_sendsmsro_single`; extensibility hooks are now `sendsmsro_should_send`, `sendsmsro_message`, `sendsmsro_recipient_phone`, `sendsmsro_after_send`.
-* Added an activation-time migration that copies the v1.x / v2.0.x stored data (settings option, price cache, history table, order opt-out meta) into the new names. Upgrading from a previous install carries over every setting and SMS-history row automatically.
+* Renamed every stored name (PHP namespace, settings option, history table, order opt-out meta key, AJAX action names, extensibility hooks) to a single prefix to satisfy WordPress.org Plugin Directory naming conventions.
+* Added an activation-time migration that copies the v1.x stored data (settings option, price cache, history table, order opt-out meta) into the new names. Upgrading from a v1.x install carries over every setting and SMS-history row automatically.
 * `register_setting()` sanitize callback now applies per-field sanitization (`sanitize_text_field`, `sanitize_textarea_field`, `sanitize_key`, and recursive sanitization for the per-status template/flag arrays).
 * `readme.txt` now includes an `== External services ==` section disclosing every sendsms.ro endpoint used, the data sent, and links to the gateway's terms / privacy / ISO certification.
 * Added `sendsms` (the plugin's WordPress.org owner account) to the Contributors line.

@@ -2,19 +2,19 @@
  * Campaign page: send + estimate.
  *
  * Depends on jQuery (for the wc-enhanced-select integration) and the
- * `SendsmsroCampaign` global injected via wp_localize_script.
+ * `RosendsmsCampaign` global injected via wp_localize_script.
  */
 (function ($) {
 	'use strict';
 
 	$(document).ready(function () {
-		var $form     = $('#sendsmsro-campaign-form');
-		var $sendBtn  = $('#sendsmsro-campaign-send');
-		var $estBtn   = $('#sendsmsro-campaign-estimate');
-		var $message  = $('#sendsmsro-campaign-message');
-		var $allFlag  = $('#sendsmsro-send-to-all');
-		var $phones   = $('#sendsmsro-phones');
-		var cfg       = window.SendsmsroCampaign || {};
+		var $form     = $('#rosendsms-campaign-form');
+		var $sendBtn  = $('#rosendsms-campaign-send');
+		var $estBtn   = $('#rosendsms-campaign-estimate');
+		var $message  = $('#rosendsms-campaign-message');
+		var $allFlag  = $('#rosendsms-send-to-all');
+		var $phones   = $('#rosendsms-phones');
+		var cfg       = window.RosendsmsCampaign || {};
 
 		$form.on('submit', function (event) {
 			event.preventDefault();
@@ -42,7 +42,7 @@
 
 			var data = $.extend(
 				{
-					action:   'sendsmsro_campaign',
+					action:   'rosendsms_campaign',
 					security: cfg.nonce,
 					all:      sendToAll ? 'true' : 'false',
 					phones:   phones,

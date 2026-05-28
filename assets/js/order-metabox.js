@@ -1,38 +1,38 @@
 /**
  * Order edit page: "Send SMS" metabox.
  *
- * Depends on jQuery and `SendsmsroMetabox` (wp_localize_script).
+ * Depends on jQuery and `RosendsmsMetabox` (wp_localize_script).
  */
 (function ($) {
 	'use strict';
 
 	$(document).ready(function () {
-		var $btn = $('#sendsmsro-mb-send');
+		var $btn = $('#rosendsms-mb-send');
 		if (!$btn.length) {
 			return;
 		}
-		var cfg = window.SendsmsroMetabox || {};
+		var cfg = window.RosendsmsMetabox || {};
 
 		$btn.on('click', function (event) {
 			event.preventDefault();
 			$btn.html(cfg.sending || 'Sending...').attr('disabled', 'disabled');
 
 			var data = {
-				action:   'sendsmsro_single',
+				action:   'rosendsms_single',
 				security: cfg.nonce,
-				order:    $('#sendsmsro-order-id').val(),
-				phone:    $('#sendsmsro-mb-phone').val(),
-				content:  $('#sendsmsro-mb-content').val(),
-				short:    $('#sendsmsro-mb-short').is(':checked'),
-				gdpr:     $('#sendsmsro-mb-gdpr').is(':checked')
+				order:    $('#rosendsms-order-id').val(),
+				phone:    $('#rosendsms-mb-phone').val(),
+				content:  $('#rosendsms-mb-content').val(),
+				short:    $('#rosendsms-mb-short').is(':checked'),
+				gdpr:     $('#rosendsms-mb-gdpr').is(':checked')
 			};
 
 			$.post(cfg.ajaxUrl, data, function (response) {
 				$btn.html(cfg.send || 'Send').removeAttr('disabled');
 				// Leave the phone field alone — it's the order's billing phone, useful for follow-ups.
-				$('#sendsmsro-mb-content').val('').trigger('input');
-				$('#sendsmsro-mb-short').prop('checked', false);
-				$('#sendsmsro-mb-gdpr').prop('checked', false);
+				$('#rosendsms-mb-content').val('').trigger('input');
+				$('#rosendsms-mb-short').prop('checked', false);
+				$('#rosendsms-mb-gdpr').prop('checked', false);
 				window.alert(response);
 			}).fail(function () {
 				$btn.html(cfg.send || 'Send').removeAttr('disabled');

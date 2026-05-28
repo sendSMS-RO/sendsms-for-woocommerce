@@ -1,8 +1,8 @@
 /**
  * SMS-length counter shared across the settings, test, campaign, and metabox pages.
  *
- * Attaches to every textarea with class .sendsmsro-content and updates its
- * sibling .sendsmsro-length-counter with an estimated SMS-segment count.
+ * Attaches to every textarea with class .rosendsms-content and updates its
+ * sibling .rosendsms-length-counter with an estimated SMS-segment count.
  */
 (function () {
 	'use strict';
@@ -19,26 +19,26 @@
 
 	function update(textarea) {
 		var counter = textarea.parentNode
-			? textarea.parentNode.querySelector('.sendsmsro-length-counter')
+			? textarea.parentNode.querySelector('.rosendsms-length-counter')
 			: null;
 		if (!counter) {
 			return;
 		}
 		var length = textarea.value.length;
 		if (length <= 0) {
-			counter.textContent = window.SendsmsroL10n
-				? window.SendsmsroL10n.empty
+			counter.textContent = window.RosendsmsL10n
+				? window.RosendsmsL10n.empty
 				: 'The field is empty.';
 			return;
 		}
-		var label = window.SendsmsroL10n
-			? window.SendsmsroL10n.approx
+		var label = window.RosendsmsL10n
+			? window.RosendsmsL10n.approx
 			: 'The approximate number of messages: ';
 		counter.textContent = label + approxSmsCount(length) + ' (' + length + ')';
 	}
 
 	function init() {
-		var textareas = document.querySelectorAll('.sendsmsro-content');
+		var textareas = document.querySelectorAll('.rosendsms-content');
 		for (var i = 0; i < textareas.length; i++) {
 			(function (textarea) {
 				textarea.addEventListener('input', function () { update(textarea); });

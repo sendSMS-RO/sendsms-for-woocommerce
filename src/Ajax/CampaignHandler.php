@@ -2,29 +2,29 @@
 /**
  * Campaign send AJAX handler.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Ajax;
+namespace Rosendsms\ForWooCommerce\Ajax;
 
-use Sendsmsro\ForWooCommerce\Api\Client;
-use Sendsmsro\ForWooCommerce\Order\Query;
-use Sendsmsro\ForWooCommerce\Storage\Settings;
+use Rosendsms\ForWooCommerce\Api\Client;
+use Rosendsms\ForWooCommerce\Order\Query;
+use Rosendsms\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Handles the AJAX call fired by the Campaign page "Send the message" button.
  *
- * Action: `wp_ajax_sendsmsro_campaign`.
+ * Action: `wp_ajax_rosendsms_campaign`.
  *
- * Nonce: `sendsmsro_send_campaign` (request field `security`).
+ * Nonce: `rosendsms_send_campaign` (request field `security`).
  * Capability: `manage_options`.
  */
 final class CampaignHandler {
 
-	const ACTION       = 'sendsmsro_campaign';
-	const NONCE_ACTION = 'sendsmsro_send_campaign';
+	const ACTION       = 'rosendsms_campaign';
+	const NONCE_ACTION = 'rosendsms_send_campaign';
 
 	/** @var Settings */
 	private $settings;

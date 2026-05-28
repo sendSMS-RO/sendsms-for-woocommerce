@@ -2,10 +2,10 @@
 /**
  * Read-only queries against past WooCommerce orders for the campaign page.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Order;
+namespace Rosendsms\ForWooCommerce\Order;
 
 use WC_Order;
 use WP_Query;

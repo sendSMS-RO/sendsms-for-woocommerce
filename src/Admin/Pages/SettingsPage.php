@@ -2,16 +2,16 @@
 /**
  * Tabbed settings page (Account / Customer / Owner).
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Admin\Pages;
+namespace Rosendsms\ForWooCommerce\Admin\Pages;
 
-use Sendsmsro\ForWooCommerce\Admin\Menu;
-use Sendsmsro\ForWooCommerce\Api\Client;
-use Sendsmsro\ForWooCommerce\CountryCodes;
-use Sendsmsro\ForWooCommerce\Order\PlaceholderReplacer;
-use Sendsmsro\ForWooCommerce\Storage\Settings;
+use Rosendsms\ForWooCommerce\Admin\Menu;
+use Rosendsms\ForWooCommerce\Api\Client;
+use Rosendsms\ForWooCommerce\CountryCodes;
+use Rosendsms\ForWooCommerce\Order\PlaceholderReplacer;
+use Rosendsms\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -48,7 +48,7 @@ final class SettingsPage {
 	 */
 	public function register_fields(): void {
 		register_setting(
-			'sendsmsro_settings_group',
+			'rosendsms_settings_group',
 			Settings::OPTION_KEY,
 			array(
 				'sanitize_callback' => array( Settings::class, 'sanitize' ),
@@ -57,9 +57,9 @@ final class SettingsPage {
 		);
 
 		// Each tab gets its own section so do_settings_sections() can render them in isolation.
-		add_settings_section( 'sendsmsro_section_account',  '', '__return_false', 'sendsmsro_page_' . self::TAB_ACCOUNT );
-		add_settings_section( 'sendsmsro_section_customer', '', '__return_false', 'sendsmsro_page_' . self::TAB_CUSTOMER );
-		add_settings_section( 'sendsmsro_section_owner',    '', '__return_false', 'sendsmsro_page_' . self::TAB_OWNER );
+		add_settings_section( 'rosendsms_section_account',  '', '__return_false', 'rosendsms_page_' . self::TAB_ACCOUNT );
+		add_settings_section( 'rosendsms_section_customer', '', '__return_false', 'rosendsms_page_' . self::TAB_CUSTOMER );
+		add_settings_section( 'rosendsms_section_owner',    '', '__return_false', 'rosendsms_page_' . self::TAB_OWNER );
 
 		$this->register_account_fields();
 		$this->register_customer_fields();
@@ -74,7 +74,7 @@ final class SettingsPage {
 	public function render(): void {
 		$tab = $this->current_tab();
 		?>
-		<div class="wrap sendsmsro-page">
+		<div class="wrap rosendsms-page">
 			<h1><?php esc_html_e( 'SendSMS — Configuration', 'sendsms-for-woocommerce' ); ?></h1>
 
 			<?php $this->render_balance_banner(); ?>
@@ -102,9 +102,9 @@ final class SettingsPage {
 
 			<form action="options.php" method="post">
 				<?php
-				settings_fields( 'sendsmsro_settings_group' );
-				printf( '<input type="hidden" name="sendsmsro_active_tab" value="%s" />', esc_attr( $tab ) );
-				do_settings_sections( 'sendsmsro_page_' . $tab );
+				settings_fields( 'rosendsms_settings_group' );
+				printf( '<input type="hidden" name="rosendsms_active_tab" value="%s" />', esc_attr( $tab ) );
+				do_settings_sections( 'rosendsms_page_' . $tab );
 				submit_button( __( 'Save changes', 'sendsms-for-woocommerce' ) );
 				?>
 			</form>
@@ -169,8 +169,8 @@ final class SettingsPage {
 	// ------------------------------------------------------------------------
 
 	private function register_account_fields(): void {
-		$page    = 'sendsmsro_page_' . self::TAB_ACCOUNT;
-		$section = 'sendsmsro_section_account';
+		$page    = 'rosendsms_page_' . self::TAB_ACCOUNT;
+		$section = 'rosendsms_section_account';
 
 		add_settings_field( 'username',          __( 'Username', 'sendsms-for-woocommerce' ),         array( $this, 'render_field_username' ),         $page, $section );
 		add_settings_field( 'password',          __( 'Password / API Key', 'sendsms-for-woocommerce' ), array( $this, 'render_field_password' ),       $page, $section );
@@ -181,16 +181,16 @@ final class SettingsPage {
 	}
 
 	private function register_customer_fields(): void {
-		$page    = 'sendsmsro_page_' . self::TAB_CUSTOMER;
-		$section = 'sendsmsro_section_customer';
+		$page    = 'rosendsms_page_' . self::TAB_CUSTOMER;
+		$section = 'rosendsms_section_customer';
 
 		add_settings_field( 'optout',  __( 'Checkout opt-out', 'sendsms-for-woocommerce' ),     array( $this, 'render_field_optout' ),     $page, $section );
 		add_settings_field( 'content', __( 'Per-status templates', 'sendsms-for-woocommerce' ), array( $this, 'render_field_status_table' ), $page, $section );
 	}
 
 	private function register_owner_fields(): void {
-		$page    = 'sendsmsro_page_' . self::TAB_OWNER;
-		$section = 'sendsmsro_section_owner';
+		$page    = 'rosendsms_page_' . self::TAB_OWNER;
+		$section = 'rosendsms_section_owner';
 
 		add_settings_field( 'send_to_owner',         __( 'Send an SMS for every new order', 'sendsms-for-woocommerce' ), array( $this, 'render_field_send_to_owner' ),         $page, $section );
 		add_settings_field( 'send_to_owner_number',  __( 'Recipient phone number', 'sendsms-for-woocommerce' ),          array( $this, 'render_field_owner_phone' ),           $page, $section );
@@ -205,7 +205,7 @@ final class SettingsPage {
 
 	public function render_field_username(): void {
 		printf(
-			'<input id="sendsmsro-username" name="%1$s[username]" type="text" value="%2$s" style="width: 400px;" />',
+			'<input id="rosendsms-username" name="%1$s[username]" type="text" value="%2$s" style="width: 400px;" />',
 			esc_attr( Settings::OPTION_KEY ),
 			esc_attr( $this->settings->username() )
 		);
@@ -214,7 +214,7 @@ final class SettingsPage {
 	public function render_field_password(): void {
 		$has = '' !== $this->settings->password();
 		printf(
-			'<input id="sendsmsro-password" name="%1$s[password]" type="password" value="" placeholder="%2$s" autocomplete="new-password" style="width: 400px;" />',
+			'<input id="rosendsms-password" name="%1$s[password]" type="password" value="" placeholder="%2$s" autocomplete="new-password" style="width: 400px;" />',
 			esc_attr( Settings::OPTION_KEY ),
 			esc_attr( $has ? '••••••••••••' : '' )
 		);
@@ -227,7 +227,7 @@ final class SettingsPage {
 
 	public function render_field_from(): void {
 		printf(
-			'<input id="sendsmsro-from" name="%1$s[from]" type="text" value="%2$s" style="width: 400px;" maxlength="11" /> <span class="description">%3$s</span>',
+			'<input id="rosendsms-from" name="%1$s[from]" type="text" value="%2$s" style="width: 400px;" maxlength="11" /> <span class="description">%3$s</span>',
 			esc_attr( Settings::OPTION_KEY ),
 			esc_attr( $this->settings->from() ),
 			esc_html__( 'Maximum 11 alpha-numeric characters. Shown to recipients as the SMS sender.', 'sendsms-for-woocommerce' )
@@ -236,7 +236,7 @@ final class SettingsPage {
 
 	public function render_field_country_code(): void {
 		$current = $this->settings->country_code();
-		echo '<select id="sendsmsro-cc" name="' . esc_attr( Settings::OPTION_KEY ) . '[cc]">';
+		echo '<select id="rosendsms-cc" name="' . esc_attr( Settings::OPTION_KEY ) . '[cc]">';
 		printf(
 			'<option value="INT" %1$s>%2$s</option>',
 			'INT' === $current ? 'selected' : '',
@@ -319,8 +319,8 @@ final class SettingsPage {
 						<input type="checkbox" name="<?php echo esc_attr( Settings::OPTION_KEY ); ?>[gdpr][<?php echo esc_attr( $key ); ?>]" value="1" <?php echo $this->settings->appends_unsubscribe_link( $key ) ? 'checked="checked"' : ''; ?> />
 					</td>
 					<td>
-						<textarea name="<?php echo esc_attr( Settings::OPTION_KEY ); ?>[content][<?php echo esc_attr( $key ); ?>]" class="sendsmsro-content" style="width: 100%; min-height: 70px;"><?php echo esc_textarea( $this->settings->template_for_status( $key ) ); ?></textarea>
-						<p class="description sendsmsro-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
+						<textarea name="<?php echo esc_attr( Settings::OPTION_KEY ); ?>[content][<?php echo esc_attr( $key ); ?>]" class="rosendsms-content" style="width: 100%; min-height: 70px;"><?php echo esc_textarea( $this->settings->template_for_status( $key ) ); ?></textarea>
+						<p class="description rosendsms-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
 						<?php if ( isset( $examples[ $key ] ) ) : ?>
 							<p class="description"><em><?php esc_html_e( 'Example:', 'sendsms-for-woocommerce' ); ?></em> <?php echo esc_html( $examples[ $key ] ); ?></p>
 						<?php endif; ?>
@@ -357,8 +357,8 @@ final class SettingsPage {
 			echo ' <code>' . implode( '</code>, <code>', array_map( 'esc_html', PlaceholderReplacer::supported_tokens() ) ) . '</code>';
 			?>
 		</p>
-		<textarea name="<?php echo esc_attr( Settings::OPTION_KEY ); ?>[send_to_owner_content]" class="sendsmsro-content" style="width: 400px; height: 100px;"><?php echo esc_textarea( $this->settings->owner_template() ); ?></textarea>
-		<p class="description sendsmsro-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
+		<textarea name="<?php echo esc_attr( Settings::OPTION_KEY ); ?>[send_to_owner_content]" class="rosendsms-content" style="width: 400px; height: 100px;"><?php echo esc_textarea( $this->settings->owner_template() ); ?></textarea>
+		<p class="description rosendsms-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
 		<?php
 	}
 

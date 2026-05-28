@@ -2,20 +2,20 @@
 /**
  * Typed accessor for the plugin's single options array.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Storage;
+namespace Rosendsms\ForWooCommerce\Storage;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Wraps the `sendsmsro_options` option (v1.x `wc_sendsms_plugin_options` is
+ * Wraps the `rosendsms_options` option (v1.x `wc_sendsms_plugin_options` is
  * migrated on activation by {@see Install::migrate_from_v1()}).
  *
  * The array shape is preserved verbatim so existing v1.x installs do not lose
  * configuration when upgrading. All reads go through this class; nothing
- * else in the codebase should touch `get_option( 'sendsmsro_options' )`
+ * else in the codebase should touch `get_option( 'rosendsms_options' )`
  * directly.
  *
  * The option array shape:
@@ -41,7 +41,7 @@ final class Settings {
 	 * Option key. The legacy v1.x option `wc_sendsms_plugin_options` is
 	 * migrated into this key on activation; see {@see Install}.
 	 */
-	const OPTION_KEY = 'sendsmsro_options';
+	const OPTION_KEY = 'rosendsms_options';
 
 	/**
 	 * Cached option array.
@@ -228,7 +228,7 @@ final class Settings {
 	 * other tabs' values from being wiped, we:
 	 *
 	 *   1. Load the current stored options.
-	 *   2. Identify the active tab from the hidden `sendsmsro_active_tab`
+	 *   2. Identify the active tab from the hidden `rosendsms_active_tab`
 	 *      input the form emits.
 	 *   3. For each key that tab manages: copy the submitted value if present,
 	 *      or unset it if absent (so unchecked checkboxes clear correctly).
@@ -254,7 +254,7 @@ final class Settings {
 		// Identify which tab submitted the form. The hidden input is emitted by SettingsPage::render().
 		// Nonce was already verified by WP's options.php handler before this callback runs.
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$active_tab = isset( $_POST['sendsmsro_active_tab'] ) ? sanitize_key( wp_unslash( $_POST['sendsmsro_active_tab'] ) ) : '';
+		$active_tab = isset( $_POST['rosendsms_active_tab'] ) ? sanitize_key( wp_unslash( $_POST['rosendsms_active_tab'] ) ) : '';
 
 		$tab_keys = self::keys_per_tab();
 		if ( ! isset( $tab_keys[ $active_tab ] ) ) {

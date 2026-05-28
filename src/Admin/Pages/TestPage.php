@@ -2,15 +2,15 @@
 /**
  * "Send a test SMS" admin page.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Admin\Pages;
+namespace Rosendsms\ForWooCommerce\Admin\Pages;
 
-use Sendsmsro\ForWooCommerce\Admin\Menu;
-use Sendsmsro\ForWooCommerce\Api\Client;
-use Sendsmsro\ForWooCommerce\Order\PhoneNumber;
-use Sendsmsro\ForWooCommerce\Storage\Settings;
+use Rosendsms\ForWooCommerce\Admin\Menu;
+use Rosendsms\ForWooCommerce\Api\Client;
+use Rosendsms\ForWooCommerce\Order\PhoneNumber;
+use Rosendsms\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class TestPage {
 
-	const NONCE_ACTION = 'sendsmsro_test_send';
+	const NONCE_ACTION = 'rosendsms_test_send';
 
 	/** @var Settings */
 	private $settings;
@@ -44,7 +44,7 @@ final class TestPage {
 	public function render(): void {
 		$this->maybe_handle_submission();
 		?>
-		<div class="wrap sendsmsro-page">
+		<div class="wrap rosendsms-page">
 			<h1><?php esc_html_e( 'SendSMS — Send a test', 'sendsms-for-woocommerce' ); ?></h1>
 
 			<form method="post" action="">
@@ -53,17 +53,17 @@ final class TestPage {
 					<tbody>
 						<tr>
 							<th scope="row">
-								<label for="sendsmsro-test-phone"><?php esc_html_e( 'Phone number', 'sendsms-for-woocommerce' ); ?></label>
+								<label for="rosendsms-test-phone"><?php esc_html_e( 'Phone number', 'sendsms-for-woocommerce' ); ?></label>
 							</th>
 							<td>
-								<input id="sendsmsro-test-phone" type="text" name="sendsmsro_test_phone" style="width: 400px;" required />
+								<input id="rosendsms-test-phone" type="text" name="rosendsms_test_phone" style="width: 400px;" required />
 							</td>
 						</tr>
 						<tr>
 							<th scope="row"><?php esc_html_e( 'Short URL?', 'sendsms-for-woocommerce' ); ?></th>
 							<td>
 								<label>
-									<input type="checkbox" name="sendsmsro_test_short_url" value="1" />
+									<input type="checkbox" name="rosendsms_test_short_url" value="1" />
 									<?php esc_html_e( 'Replace http(s) links in the message with a short URL.', 'sendsms-for-woocommerce' ); ?>
 								</label>
 							</td>
@@ -72,18 +72,18 @@ final class TestPage {
 							<th scope="row"><?php esc_html_e( 'Add unsubscribe link?', 'sendsms-for-woocommerce' ); ?></th>
 							<td>
 								<label>
-									<input type="checkbox" name="sendsmsro_test_gdpr" value="1" />
+									<input type="checkbox" name="rosendsms_test_gdpr" value="1" />
 									<?php esc_html_e( 'Append a one-click unsubscribe link. Use {gdpr} in the message to place it explicitly; otherwise it is appended at the end.', 'sendsms-for-woocommerce' ); ?>
 								</label>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="sendsmsro-test-message"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label>
+								<label for="rosendsms-test-message"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label>
 							</th>
 							<td>
-								<textarea id="sendsmsro-test-message" name="sendsmsro_test_message" class="sendsmsro-content" style="width: 400px; height: 100px;" required></textarea>
-								<p class="description sendsmsro-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
+								<textarea id="rosendsms-test-message" name="rosendsms_test_message" class="rosendsms-content" style="width: 400px; height: 100px;" required></textarea>
+								<p class="description rosendsms-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
 							</td>
 						</tr>
 					</tbody>
@@ -111,10 +111,10 @@ final class TestPage {
 		}
 		check_admin_referer( self::NONCE_ACTION );
 
-		$raw_phone   = isset( $_POST['sendsmsro_test_phone'] )   ? sanitize_text_field( wp_unslash( $_POST['sendsmsro_test_phone'] ) )   : '';
-		$raw_message = isset( $_POST['sendsmsro_test_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['sendsmsro_test_message'] ) ) : '';
-		$short       = isset( $_POST['sendsmsro_test_short_url'] );
-		$gdpr        = isset( $_POST['sendsmsro_test_gdpr'] );
+		$raw_phone   = isset( $_POST['rosendsms_test_phone'] )   ? sanitize_text_field( wp_unslash( $_POST['rosendsms_test_phone'] ) )   : '';
+		$raw_message = isset( $_POST['rosendsms_test_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['rosendsms_test_message'] ) ) : '';
+		$short       = isset( $_POST['rosendsms_test_short_url'] );
+		$gdpr        = isset( $_POST['rosendsms_test_gdpr'] );
 
 		if ( '' === $raw_phone ) {
 			$this->notice( 'error', __( 'You have not entered a phone number.', 'sendsms-for-woocommerce' ) );

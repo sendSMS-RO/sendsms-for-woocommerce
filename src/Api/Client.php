@@ -2,12 +2,12 @@
 /**
  * sendsms.ro JSON API client.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Api;
+namespace Rosendsms\ForWooCommerce\Api;
 
-use Sendsmsro\ForWooCommerce\Storage\HistoryRepository;
+use Rosendsms\ForWooCommerce\Storage\HistoryRepository;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -31,12 +31,12 @@ final class Client {
 	/**
 	 * Cache option for the per-SMS price.
 	 */
-	const PRICE_OPTION = 'sendsmsro_default_price';
+	const PRICE_OPTION = 'rosendsms_default_price';
 
 	/**
 	 * When the cached price should be refreshed next.
 	 */
-	const PRICE_TIME_OPTION = 'sendsmsro_default_price_time';
+	const PRICE_TIME_OPTION = 'rosendsms_default_price_time';
 
 	/**
 	 * History repository. Kept for callers that want the same instance.

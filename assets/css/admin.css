@@ -1,16 +1,16 @@
 /* SendSMS for WooCommerce — admin styling.
    Kept intentionally minimal; the plugin leans on WP core + WooCommerce admin styles. */
 
-.sendsmsro-page .form-table th { width: 220px; }
-.sendsmsro-page .nav-tab-wrapper { margin-bottom: 1.5em; }
+.rosendsms-page .form-table th { width: 220px; }
+.rosendsms-page .nav-tab-wrapper { margin-bottom: 1.5em; }
 
 /* Per-status template table on the Customer tab. */
-.sendsmsro-page table.widefat th,
-.sendsmsro-page table.widefat td {
+.rosendsms-page table.widefat th,
+.rosendsms-page table.widefat td {
     padding: 10px 14px;
     vertical-align: top;
 }
-.sendsmsro-page table.widefat td .description { margin-top: 0.25em; }
+.rosendsms-page table.widefat td .description { margin-top: 0.25em; }
 
-.sendsmsro-length-counter { display: block; color: #646970; }
-.sendsmsro-metabox p { margin: 0.75em 0; }
+.rosendsms-length-counter { display: block; color: #646970; }
+.rosendsms-metabox p { margin: 0.75em 0; }

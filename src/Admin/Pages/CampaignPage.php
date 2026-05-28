@@ -2,14 +2,14 @@
 /**
  * "Campaign" admin page: filter past orders and send bulk SMS.
  *
- * @package Sendsmsro\ForWooCommerce
+ * @package Rosendsms\ForWooCommerce
  */
 
-namespace Sendsmsro\ForWooCommerce\Admin\Pages;
+namespace Rosendsms\ForWooCommerce\Admin\Pages;
 
-use Sendsmsro\ForWooCommerce\Admin\Menu;
-use Sendsmsro\ForWooCommerce\Order\Query;
-use Sendsmsro\ForWooCommerce\Storage\Settings;
+use Rosendsms\ForWooCommerce\Admin\Menu;
+use Rosendsms\ForWooCommerce\Order\Query;
+use Rosendsms\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class CampaignPage {
 
-	const FILTER_NONCE_ACTION = 'sendsmsro_send_campaign';
+	const FILTER_NONCE_ACTION = 'rosendsms_send_campaign';
 
 	/** @var Settings */
 	private $settings;
@@ -57,7 +57,7 @@ final class CampaignPage {
 			: Query::completed_orders();
 		$phones = Query::unique_phones( $orders, $cc );
 		?>
-		<div class="wrap sendsmsro-page">
+		<div class="wrap rosendsms-page">
 			<h1><?php esc_html_e( 'SendSMS — Campaign', 'sendsms-for-woocommerce' ); ?></h1>
 
 			<form method="get" action="">
@@ -131,22 +131,22 @@ final class CampaignPage {
 				?>
 			</h2>
 
-			<form method="post" action="" id="sendsmsro-campaign-form">
+			<form method="post" action="" id="rosendsms-campaign-form">
 				<div style="display: flex; flex-wrap: wrap; gap: 2em;">
 					<div style="flex: 1 1 60%; min-width: 320px;">
-						<label for="sendsmsro-campaign-message"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label>
-						<textarea id="sendsmsro-campaign-message" name="content" class="sendsmsro-content" style="width: 100%; height: 250px;"></textarea>
-						<p class="description sendsmsro-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
+						<label for="rosendsms-campaign-message"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label>
+						<textarea id="rosendsms-campaign-message" name="content" class="rosendsms-content" style="width: 100%; height: 250px;"></textarea>
+						<p class="description rosendsms-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
 					</div>
 					<div style="flex: 1 1 30%; min-width: 280px;">
 						<p><?php esc_html_e( 'Phone numbers:', 'sendsms-for-woocommerce' ); ?></p>
 						<div style="margin-bottom: 0.5em;">
 							<label>
-								<input type="checkbox" id="sendsmsro-send-to-all" name="sendsmsro_to_all" checked />
+								<input type="checkbox" id="rosendsms-send-to-all" name="rosendsms_to_all" checked />
 								<?php esc_html_e( 'Send SMS to every number from the filter.', 'sendsms-for-woocommerce' ); ?>
 							</label>
 						</div>
-						<select name="phones[]" id="sendsmsro-phones" multiple="multiple" class="wc-enhanced-select" data-placeholder="<?php esc_attr_e( 'Select phone numbers...', 'sendsms-for-woocommerce' ); ?>" style="width: 100%;">
+						<select name="phones[]" id="rosendsms-phones" multiple="multiple" class="wc-enhanced-select" data-placeholder="<?php esc_attr_e( 'Select phone numbers...', 'sendsms-for-woocommerce' ); ?>" style="width: 100%;">
 							<?php
 							foreach ( $phones as $p ) {
 								printf(
@@ -159,8 +159,8 @@ final class CampaignPage {
 					</div>
 				</div>
 				<p style="clear: both;">
-					<button type="submit" class="button button-primary button-large" id="sendsmsro-campaign-send"><?php esc_html_e( 'Send the message', 'sendsms-for-woocommerce' ); ?></button>
-					<button type="button" class="button button-secondary button-large" id="sendsmsro-campaign-estimate"><?php esc_html_e( 'Estimate the price', 'sendsms-for-woocommerce' ); ?></button>
+					<button type="submit" class="button button-primary button-large" id="rosendsms-campaign-send"><?php esc_html_e( 'Send the message', 'sendsms-for-woocommerce' ); ?></button>
+					<button type="button" class="button button-secondary button-large" id="rosendsms-campaign-estimate"><?php esc_html_e( 'Estimate the price', 'sendsms-for-woocommerce' ); ?></button>
 				</p>
 			</form>
 		</div>
