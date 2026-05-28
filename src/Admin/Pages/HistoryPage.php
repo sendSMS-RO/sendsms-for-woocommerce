@@ -2,19 +2,19 @@
 /**
  * SMS history listing page.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Admin\Pages;
+namespace Sendsmsro\ForWooCommerce\Admin\Pages;
 
-use SendSMS\ForWooCommerce\Admin\HistoryTable;
-use SendSMS\ForWooCommerce\Admin\Menu;
-use SendSMS\ForWooCommerce\Storage\HistoryRepository;
+use Sendsmsro\ForWooCommerce\Admin\HistoryTable;
+use Sendsmsro\ForWooCommerce\Admin\Menu;
+use Sendsmsro\ForWooCommerce\Storage\HistoryRepository;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Renders the WP_List_Table wrapping {prefix}wcsendsms_history.
+ * Renders the WP_List_Table wrapping {prefix}sendsmsro_history.
  */
 final class HistoryPage {
 
@@ -44,12 +44,12 @@ final class HistoryPage {
 		$table = new HistoryTable( $this->history );
 		$table->prepare_items();
 		?>
-		<div class="wrap sendsms-fwc-page">
+		<div class="wrap sendsmsro-page">
 			<h1><?php esc_html_e( 'SendSMS — History', 'sendsms-for-woocommerce' ); ?></h1>
 			<form method="get">
 				<input type="hidden" name="page" value="<?php echo esc_attr( Menu::HISTORY_SLUG ); ?>" />
 				<?php
-				$table->search_box( __( 'Search', 'sendsms-for-woocommerce' ), 'sendsms-fwc-history-search' );
+				$table->search_box( __( 'Search', 'sendsms-for-woocommerce' ), 'sendsmsro-history-search' );
 				$table->display();
 				?>
 			</form>

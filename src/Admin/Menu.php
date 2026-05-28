@@ -2,18 +2,18 @@
 /**
  * Registers the WP admin menu + submenus for this plugin.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Admin;
+namespace Sendsmsro\ForWooCommerce\Admin;
 
-use SendSMS\ForWooCommerce\Admin\Pages\CampaignPage;
-use SendSMS\ForWooCommerce\Admin\Pages\HistoryPage;
-use SendSMS\ForWooCommerce\Admin\Pages\MainPage;
-use SendSMS\ForWooCommerce\Admin\Pages\SettingsPage;
-use SendSMS\ForWooCommerce\Admin\Pages\TestPage;
-use SendSMS\ForWooCommerce\Api\Client;
-use SendSMS\ForWooCommerce\Storage\Settings;
+use Sendsmsro\ForWooCommerce\Admin\Pages\CampaignPage;
+use Sendsmsro\ForWooCommerce\Admin\Pages\HistoryPage;
+use Sendsmsro\ForWooCommerce\Admin\Pages\MainPage;
+use Sendsmsro\ForWooCommerce\Admin\Pages\SettingsPage;
+use Sendsmsro\ForWooCommerce\Admin\Pages\TestPage;
+use Sendsmsro\ForWooCommerce\Api\Client;
+use Sendsmsro\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,11 +22,11 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Menu {
 
-	const MENU_SLUG     = 'sendsms_fwc_main';
-	const SETTINGS_SLUG = 'sendsms_fwc_settings';
-	const HISTORY_SLUG  = 'sendsms_fwc_history';
-	const CAMPAIGN_SLUG = 'sendsms_fwc_campaign';
-	const TEST_SLUG     = 'sendsms_fwc_test';
+	const MENU_SLUG     = 'sendsmsro_main';
+	const SETTINGS_SLUG = 'sendsmsro_settings';
+	const HISTORY_SLUG  = 'sendsmsro_history';
+	const CAMPAIGN_SLUG = 'sendsmsro_campaign';
+	const TEST_SLUG     = 'sendsmsro_test';
 
 	/** @var Settings */
 	private $settings;
@@ -70,7 +70,7 @@ final class Menu {
 			'manage_options',
 			self::MENU_SLUG,
 			array( new MainPage(), 'render' ),
-			SENDSMS_FWC_URL . 'images/sendsms.png'
+			SENDSMSRO_URL . 'images/sendsms.png'
 		);
 
 		add_submenu_page(
@@ -131,10 +131,10 @@ final class Menu {
 		}
 
 		wp_enqueue_style(
-			'sendsms-fwc-admin',
-			SENDSMS_FWC_URL . 'assets/css/admin.css',
+			'sendsmsro-admin',
+			SENDSMSRO_URL . 'assets/css/admin.css',
 			array(),
-			SENDSMS_FWC_VERSION
+			SENDSMSRO_VERSION
 		);
 
 		wp_enqueue_style( 'woocommerce_admin_styles' );
@@ -143,15 +143,15 @@ final class Menu {
 		// Page-specific scripts.
 		if ( false !== strpos( $hook, self::SETTINGS_SLUG ) || false !== strpos( $hook, self::TEST_SLUG ) || false !== strpos( $hook, self::CAMPAIGN_SLUG ) ) {
 			wp_enqueue_script(
-				'sendsms-fwc-length-counter',
-				SENDSMS_FWC_URL . 'assets/js/length-counter.js',
+				'sendsmsro-length-counter',
+				SENDSMSRO_URL . 'assets/js/length-counter.js',
 				array(),
-				SENDSMS_FWC_VERSION,
+				SENDSMSRO_VERSION,
 				true
 			);
 			wp_localize_script(
-				'sendsms-fwc-length-counter',
-				'SendSmsFwcL10n',
+				'sendsmsro-length-counter',
+				'SendsmsroL10n',
 				array(
 					'approx' => __( 'The approximate number of messages: ', 'sendsms-for-woocommerce' ),
 					'empty'  => __( 'The field is empty.', 'sendsms-for-woocommerce' ),
@@ -161,18 +161,18 @@ final class Menu {
 
 		if ( false !== strpos( $hook, self::CAMPAIGN_SLUG ) ) {
 			wp_enqueue_script(
-				'sendsms-fwc-campaign',
-				SENDSMS_FWC_URL . 'assets/js/campaign.js',
+				'sendsmsro-campaign',
+				SENDSMSRO_URL . 'assets/js/campaign.js',
 				array( 'jquery', 'wc-enhanced-select' ),
-				SENDSMS_FWC_VERSION,
+				SENDSMSRO_VERSION,
 				true
 			);
 			wp_localize_script(
-				'sendsms-fwc-campaign',
-				'SendSmsFwcCampaign',
+				'sendsmsro-campaign',
+				'SendsmsroCampaign',
 				array(
 					'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
-					'nonce'         => wp_create_nonce( 'wc_sendsms_send_campaign' ),
+					'nonce'         => wp_create_nonce( 'sendsmsro_send_campaign' ),
 					'sending'       => __( "It's being sent...", 'sendsms-for-woocommerce' ),
 					'send'          => __( 'Send the message', 'sendsms-for-woocommerce' ),
 					'estimateLabel' => __( 'The estimate price is: ', 'sendsms-for-woocommerce' ),
@@ -187,18 +187,18 @@ final class Menu {
 
 		if ( 'post.php' === $hook || 'post-new.php' === $hook || false !== strpos( $hook, 'wc-orders' ) ) {
 			wp_enqueue_script(
-				'sendsms-fwc-order-metabox',
-				SENDSMS_FWC_URL . 'assets/js/order-metabox.js',
+				'sendsmsro-order-metabox',
+				SENDSMSRO_URL . 'assets/js/order-metabox.js',
 				array( 'jquery' ),
-				SENDSMS_FWC_VERSION,
+				SENDSMSRO_VERSION,
 				true
 			);
 			wp_localize_script(
-				'sendsms-fwc-order-metabox',
-				'SendSmsFwcMetabox',
+				'sendsmsro-order-metabox',
+				'SendsmsroMetabox',
 				array(
 					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-					'nonce'   => wp_create_nonce( 'wc_sendsms_send_single' ),
+					'nonce'   => wp_create_nonce( 'sendsmsro_send_single' ),
 					'sending' => __( "It's being sent...", 'sendsms-for-woocommerce' ),
 					'send'    => __( 'Send the message', 'sendsms-for-woocommerce' ),
 				)

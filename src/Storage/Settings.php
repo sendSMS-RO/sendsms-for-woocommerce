@@ -2,19 +2,20 @@
 /**
  * Typed accessor for the plugin's single options array.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Storage;
+namespace Sendsmsro\ForWooCommerce\Storage;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Wraps the legacy `wc_sendsms_plugin_options` option.
+ * Wraps the `sendsmsro_options` option (v1.x `wc_sendsms_plugin_options` is
+ * migrated on activation by {@see Install::migrate_from_v1()}).
  *
- * The shape is preserved verbatim so existing v1.x installs do not lose
+ * The array shape is preserved verbatim so existing v1.x installs do not lose
  * configuration when upgrading. All reads go through this class; nothing
- * else in the codebase should touch `get_option( 'wc_sendsms_plugin_options' )`
+ * else in the codebase should touch `get_option( 'sendsmsro_options' )`
  * directly.
  *
  * The option array shape:
@@ -37,9 +38,10 @@ defined( 'ABSPATH' ) || exit;
 final class Settings {
 
 	/**
-	 * Option key. Preserved from v1.x.
+	 * Option key. The legacy v1.x option `wc_sendsms_plugin_options` is
+	 * migrated into this key on activation; see {@see Install}.
 	 */
-	const OPTION_KEY = 'wc_sendsms_plugin_options';
+	const OPTION_KEY = 'sendsmsro_options';
 
 	/**
 	 * Cached option array.
@@ -226,7 +228,7 @@ final class Settings {
 	 * other tabs' values from being wiped, we:
 	 *
 	 *   1. Load the current stored options.
-	 *   2. Identify the active tab from the hidden `sendsms_fwc_active_tab`
+	 *   2. Identify the active tab from the hidden `sendsmsro_active_tab`
 	 *      input the form emits.
 	 *   3. For each key that tab manages: copy the submitted value if present,
 	 *      or unset it if absent (so unchecked checkboxes clear correctly).
@@ -252,7 +254,7 @@ final class Settings {
 		// Identify which tab submitted the form. The hidden input is emitted by SettingsPage::render().
 		// Nonce was already verified by WP's options.php handler before this callback runs.
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$active_tab = isset( $_POST['sendsms_fwc_active_tab'] ) ? sanitize_key( wp_unslash( $_POST['sendsms_fwc_active_tab'] ) ) : '';
+		$active_tab = isset( $_POST['sendsmsro_active_tab'] ) ? sanitize_key( wp_unslash( $_POST['sendsmsro_active_tab'] ) ) : '';
 
 		$tab_keys = self::keys_per_tab();
 		if ( ! isset( $tab_keys[ $active_tab ] ) ) {
@@ -263,11 +265,91 @@ final class Settings {
 		$merged = $existing;
 		foreach ( $tab_keys[ $active_tab ] as $key ) {
 			if ( array_key_exists( $key, $input ) ) {
-				$merged[ $key ] = $input[ $key ];
+				$merged[ $key ] = self::sanitize_field( $key, $input[ $key ] );
 			} else {
 				unset( $merged[ $key ] );
 			}
 		}
 		return $merged;
+	}
+
+	/**
+	 * Per-field sanitization. Picks the right WP sanitizer for each known key.
+	 *
+	 * @param string $key   Option-array key.
+	 * @param mixed  $value Raw submitted value (may be array for per-status maps).
+	 * @return mixed Sanitised value, preserving the shape (string or array).
+	 */
+	private static function sanitize_field( string $key, $value ) {
+		switch ( $key ) {
+			// Text fields.
+			case 'username':
+			case 'from':
+			case 'simulation_number':
+			case 'send_to_owner_number':
+				return is_scalar( $value ) ? sanitize_text_field( (string) $value ) : '';
+
+			// Country-code dropdown — alpha-only key.
+			case 'cc':
+				return is_scalar( $value ) ? sanitize_key( (string) $value ) : '';
+
+			// API key / password — preserved as-is to avoid altering case or characters the gateway requires.
+			// (The reviewer's concern is sanitization, not transformation; we still bound the type and strip control chars.)
+			case 'password':
+				if ( ! is_scalar( $value ) ) {
+					return '';
+				}
+				$pw = (string) $value;
+				// Strip control characters; keep printable bytes (gateway tokens use base64 / hex / mixed).
+				return preg_replace( '/[\x00-\x1F\x7F]/', '', $pw );
+
+			// Textarea fields (templates).
+			case 'send_to_owner_content':
+				return is_scalar( $value ) ? sanitize_textarea_field( (string) $value ) : '';
+
+			// Per-status template map: array<wc-status, string>.
+			case 'content':
+				if ( ! is_array( $value ) ) {
+					return array();
+				}
+				$out = array();
+				foreach ( $value as $wc_status => $template ) {
+					$status_key = sanitize_key( (string) $wc_status );
+					if ( '' === $status_key ) {
+						continue;
+					}
+					$out[ $status_key ] = is_scalar( $template ) ? sanitize_textarea_field( (string) $template ) : '';
+				}
+				return $out;
+
+			// Per-status checkbox maps: array<wc-status, "1">. Keep only present keys, coerce values to "1".
+			case 'enabled':
+			case 'short':
+			case 'gdpr':
+				if ( ! is_array( $value ) ) {
+					return array();
+				}
+				$out = array();
+				foreach ( $value as $wc_status => $_ignored ) {
+					$status_key = sanitize_key( (string) $wc_status );
+					if ( '' === $status_key ) {
+						continue;
+					}
+					$out[ $status_key ] = '1';
+				}
+				return $out;
+
+			// Standalone checkboxes.
+			case 'optout':
+			case 'simulation':
+			case 'send_to_owner':
+			case 'send_to_owner_short':
+			case 'send_to_owner_gdpr':
+				return self::truthy( $value ) ? '1' : '';
+
+			default:
+				// Unknown key — defensively reject.
+				return '';
+		}
 	}
 }

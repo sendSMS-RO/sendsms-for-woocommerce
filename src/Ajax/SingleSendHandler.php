@@ -2,29 +2,29 @@
 /**
  * Single-send AJAX handler (order edit metabox).
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Ajax;
+namespace Sendsmsro\ForWooCommerce\Ajax;
 
-use SendSMS\ForWooCommerce\Api\Client;
-use SendSMS\ForWooCommerce\Order\PhoneNumber;
-use SendSMS\ForWooCommerce\Storage\Settings;
+use Sendsmsro\ForWooCommerce\Api\Client;
+use Sendsmsro\ForWooCommerce\Order\PhoneNumber;
+use Sendsmsro\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Handles the AJAX call fired by the order-edit metabox.
  *
- * Action: `wp_ajax_wc_sendsms_single` (action name preserved from v1.x).
+ * Action: `wp_ajax_sendsmsro_single`.
  *
- * Nonce: `wc_sendsms_send_single` (request field `security`).
+ * Nonce: `sendsmsro_send_single` (request field `security`).
  * Capability: `manage_woocommerce` (shop managers + administrators).
  */
 final class SingleSendHandler {
 
-	const ACTION       = 'wc_sendsms_single';
-	const NONCE_ACTION = 'wc_sendsms_send_single';
+	const ACTION       = 'sendsmsro_single';
+	const NONCE_ACTION = 'sendsmsro_send_single';
 
 	/** @var Settings */
 	private $settings;

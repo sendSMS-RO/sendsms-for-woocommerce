@@ -3,7 +3,7 @@
  * Plugin Name:       SendSMS for WooCommerce
  * Plugin URI:        https://www.sendsms.ro/ro/ecommerce/plugin-woocommerce/
  * Description:       Send SMS notifications to your customers on every WooCommerce order status change. Per-status templates, campaign sender, single-order SMS, full history.
- * Version:           2.0.1
+ * Version:           2.0.2
  * Requires at least: 4.0
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -14,32 +14,32 @@
  * Text Domain:       sendsms-for-woocommerce
  * Domain Path:       /languages
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
 defined( 'ABSPATH' ) || exit;
 
 // Plugin metadata constants.
-define( 'SENDSMS_FWC_VERSION', '2.0.1' );
-define( 'SENDSMS_FWC_FILE', __FILE__ );
-define( 'SENDSMS_FWC_DIR', plugin_dir_path( __FILE__ ) );
-define( 'SENDSMS_FWC_URL', plugin_dir_url( __FILE__ ) );
-define( 'SENDSMS_FWC_BASENAME', plugin_basename( __FILE__ ) );
+define( 'SENDSMSRO_VERSION', '2.0.2' );
+define( 'SENDSMSRO_FILE', __FILE__ );
+define( 'SENDSMSRO_DIR', plugin_dir_path( __FILE__ ) );
+define( 'SENDSMSRO_URL', plugin_dir_url( __FILE__ ) );
+define( 'SENDSMSRO_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
- * PSR-4 autoloader for SendSMS\ForWooCommerce\* under /src.
+ * PSR-4 autoloader for Sendsmsro\ForWooCommerce\* under /src.
  *
  * @param string $class Fully-qualified class name.
  * @return void
  */
 spl_autoload_register(
 	static function ( $class ) {
-		$prefix = 'SendSMS\\ForWooCommerce\\';
+		$prefix = 'Sendsmsro\\ForWooCommerce\\';
 		if ( strpos( $class, $prefix ) !== 0 ) {
 			return;
 		}
 		$relative = substr( $class, strlen( $prefix ) );
-		$path     = SENDSMS_FWC_DIR . 'src/' . str_replace( '\\', '/', $relative ) . '.php';
+		$path     = SENDSMSRO_DIR . 'src/' . str_replace( '\\', '/', $relative ) . '.php';
 		if ( is_readable( $path ) ) {
 			require_once $path;
 		}
@@ -53,13 +53,13 @@ add_action(
 	'before_woocommerce_init',
 	static function () {
 		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', SENDSMS_FWC_FILE, true );
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', SENDSMSRO_FILE, true );
 		}
 	}
 );
 
 // Activation: create the history table and store the schema version.
-register_activation_hook( SENDSMS_FWC_FILE, array( \SendSMS\ForWooCommerce\Install::class, 'activate' ) );
+register_activation_hook( SENDSMSRO_FILE, array( \Sendsmsro\ForWooCommerce\Install::class, 'activate' ) );
 
 /**
  * Boot the plugin once all plugins are loaded (WooCommerce included).
@@ -68,10 +68,10 @@ add_action(
 	'plugins_loaded',
 	static function () {
 		// WooCommerce is mandatory. Without it, surface an admin notice and bail.
-		if ( ! \SendSMS\ForWooCommerce\Plugin::woocommerce_is_active() ) {
-			\SendSMS\ForWooCommerce\Plugin::add_missing_wc_notice();
+		if ( ! \Sendsmsro\ForWooCommerce\Plugin::woocommerce_is_active() ) {
+			\Sendsmsro\ForWooCommerce\Plugin::add_missing_wc_notice();
 			return;
 		}
-		\SendSMS\ForWooCommerce\Plugin::instance()->boot();
+		\Sendsmsro\ForWooCommerce\Plugin::instance()->boot();
 	}
 );

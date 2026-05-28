@@ -2,12 +2,12 @@
 /**
  * Phone-number cleaning + country-code prefix logic.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Order;
+namespace Sendsmsro\ForWooCommerce\Order;
 
-use SendSMS\ForWooCommerce\CountryCodes;
+use Sendsmsro\ForWooCommerce\CountryCodes;
 
 defined( 'ABSPATH' ) || exit;
 

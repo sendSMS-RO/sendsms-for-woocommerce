@@ -1,13 +1,13 @@
 <?php
 /**
- * Read/write access to the {prefix}wcsendsms_history table.
+ * Read/write access to the {prefix}sendsmsro_history table.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Storage;
+namespace Sendsmsro\ForWooCommerce\Storage;
 
-use SendSMS\ForWooCommerce\Install;
+use Sendsmsro\ForWooCommerce\Install;
 
 defined( 'ABSPATH' ) || exit;
 

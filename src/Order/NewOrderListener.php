@@ -2,13 +2,13 @@
 /**
  * Sends an SMS to the shop owner on every new order, if enabled.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Order;
+namespace Sendsmsro\ForWooCommerce\Order;
 
-use SendSMS\ForWooCommerce\Api\Client;
-use SendSMS\ForWooCommerce\Storage\Settings;
+use Sendsmsro\ForWooCommerce\Api\Client;
+use Sendsmsro\ForWooCommerce\Storage\Settings;
 use WC_Order;
 
 defined( 'ABSPATH' ) || exit;
@@ -68,15 +68,15 @@ final class NewOrderListener {
 
 		$context = array( 'type' => 'new order' );
 
-		if ( ! apply_filters( 'sendsms_for_woocommerce_should_send', true, $order, $context ) ) {
+		if ( ! apply_filters( 'sendsmsro_should_send', true, $order, $context ) ) {
 			return;
 		}
 
 		$message = PlaceholderReplacer::render( $this->settings->owner_template(), $order );
-		$message = (string) apply_filters( 'sendsms_for_woocommerce_message', $message, $order, $context );
+		$message = (string) apply_filters( 'sendsmsro_message', $message, $order, $context );
 
 		$phone = PhoneNumber::normalize( $this->settings->owner_phone(), $this->settings->country_code() );
-		$phone = (string) apply_filters( 'sendsms_for_woocommerce_recipient_phone', $phone, $order, $context );
+		$phone = (string) apply_filters( 'sendsmsro_recipient_phone', $phone, $order, $context );
 		if ( '' === $phone ) {
 			return;
 		}
@@ -109,7 +109,7 @@ final class NewOrderListener {
 		);
 
 		do_action(
-			'sendsms_for_woocommerce_after_send',
+			'sendsmsro_after_send',
 			array(
 				'phone'    => $phone,
 				'message'  => $message,

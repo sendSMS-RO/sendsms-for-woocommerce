@@ -2,14 +2,14 @@
 /**
  * "Campaign" admin page: filter past orders and send bulk SMS.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Admin\Pages;
+namespace Sendsmsro\ForWooCommerce\Admin\Pages;
 
-use SendSMS\ForWooCommerce\Admin\Menu;
-use SendSMS\ForWooCommerce\Order\Query;
-use SendSMS\ForWooCommerce\Storage\Settings;
+use Sendsmsro\ForWooCommerce\Admin\Menu;
+use Sendsmsro\ForWooCommerce\Order\Query;
+use Sendsmsro\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class CampaignPage {
 
-	const FILTER_NONCE_ACTION = 'wc_sendsms_send_campaign';
+	const FILTER_NONCE_ACTION = 'sendsmsro_send_campaign';
 
 	/** @var Settings */
 	private $settings;
@@ -57,7 +57,7 @@ final class CampaignPage {
 			: Query::completed_orders();
 		$phones = Query::unique_phones( $orders, $cc );
 		?>
-		<div class="wrap sendsms-fwc-page">
+		<div class="wrap sendsmsro-page">
 			<h1><?php esc_html_e( 'SendSMS — Campaign', 'sendsms-for-woocommerce' ); ?></h1>
 
 			<form method="get" action="">
@@ -131,22 +131,22 @@ final class CampaignPage {
 				?>
 			</h2>
 
-			<form method="post" action="" id="sendsms-fwc-campaign-form">
+			<form method="post" action="" id="sendsmsro-campaign-form">
 				<div style="display: flex; flex-wrap: wrap; gap: 2em;">
 					<div style="flex: 1 1 60%; min-width: 320px;">
-						<label for="sendsms-fwc-campaign-message"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label>
-						<textarea id="sendsms-fwc-campaign-message" name="content" class="sendsms-fwc-content" style="width: 100%; height: 250px;"></textarea>
-						<p class="description sendsms-fwc-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
+						<label for="sendsmsro-campaign-message"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label>
+						<textarea id="sendsmsro-campaign-message" name="content" class="sendsmsro-content" style="width: 100%; height: 250px;"></textarea>
+						<p class="description sendsmsro-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></p>
 					</div>
 					<div style="flex: 1 1 30%; min-width: 280px;">
 						<p><?php esc_html_e( 'Phone numbers:', 'sendsms-for-woocommerce' ); ?></p>
 						<div style="margin-bottom: 0.5em;">
 							<label>
-								<input type="checkbox" id="sendsms-fwc-send-to-all" name="wc_sendsms_to_all" checked />
+								<input type="checkbox" id="sendsmsro-send-to-all" name="sendsmsro_to_all" checked />
 								<?php esc_html_e( 'Send SMS to every number from the filter.', 'sendsms-for-woocommerce' ); ?>
 							</label>
 						</div>
-						<select name="phones[]" id="sendsms-fwc-phones" multiple="multiple" class="wc-enhanced-select" data-placeholder="<?php esc_attr_e( 'Select phone numbers...', 'sendsms-for-woocommerce' ); ?>" style="width: 100%;">
+						<select name="phones[]" id="sendsmsro-phones" multiple="multiple" class="wc-enhanced-select" data-placeholder="<?php esc_attr_e( 'Select phone numbers...', 'sendsms-for-woocommerce' ); ?>" style="width: 100%;">
 							<?php
 							foreach ( $phones as $p ) {
 								printf(
@@ -159,8 +159,8 @@ final class CampaignPage {
 					</div>
 				</div>
 				<p style="clear: both;">
-					<button type="submit" class="button button-primary button-large" id="sendsms-fwc-campaign-send"><?php esc_html_e( 'Send the message', 'sendsms-for-woocommerce' ); ?></button>
-					<button type="button" class="button button-secondary button-large" id="sendsms-fwc-campaign-estimate"><?php esc_html_e( 'Estimate the price', 'sendsms-for-woocommerce' ); ?></button>
+					<button type="submit" class="button button-primary button-large" id="sendsmsro-campaign-send"><?php esc_html_e( 'Send the message', 'sendsms-for-woocommerce' ); ?></button>
+					<button type="button" class="button button-secondary button-large" id="sendsmsro-campaign-estimate"><?php esc_html_e( 'Estimate the price', 'sendsms-for-woocommerce' ); ?></button>
 				</p>
 			</form>
 		</div>

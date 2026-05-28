@@ -2,10 +2,10 @@
 /**
  * Decoded sendsms.ro JSON response.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Api;
+namespace Sendsmsro\ForWooCommerce\Api;
 
 defined( 'ABSPATH' ) || exit;
 

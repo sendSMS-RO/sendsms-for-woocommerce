@@ -2,10 +2,10 @@
 /**
  * Substitutes {billing_first_name} etc. into SMS templates.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Order;
+namespace Sendsmsro\ForWooCommerce\Order;
 
 use WC_Order;
 

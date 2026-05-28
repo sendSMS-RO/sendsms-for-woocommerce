@@ -2,10 +2,10 @@
 /**
  * "Send SMS" metabox on the order edit screen.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Admin;
+namespace Sendsmsro\ForWooCommerce\Admin;
 
 use WC_Order;
 use WP_Post;
@@ -19,11 +19,11 @@ defined( 'ABSPATH' ) || exit;
  * `wc-orders` screen so it appears on every WooCommerce install regardless of
  * the order storage backend.
  *
- * The form submits via AJAX → {@see \SendSMS\ForWooCommerce\Ajax\SingleSendHandler}.
+ * The form submits via AJAX → {@see \Sendsmsro\ForWooCommerce\Ajax\SingleSendHandler}.
  */
 final class OrderMetabox {
 
-	const METABOX_ID = 'sendsms_fwc_order_metabox';
+	const METABOX_ID = 'sendsmsro_order_metabox';
 
 	/**
 	 * Register hooks.
@@ -71,30 +71,30 @@ final class OrderMetabox {
 		$order_id      = $order->get_id();
 		$billing_phone = (string) $order->get_billing_phone();
 		?>
-		<div class="sendsms-fwc-metabox">
-			<input type="hidden" id="sendsms-fwc-order-id" value="<?php echo esc_attr( (string) $order_id ); ?>" />
+		<div class="sendsmsro-metabox">
+			<input type="hidden" id="sendsmsro-order-id" value="<?php echo esc_attr( (string) $order_id ); ?>" />
 
 			<p>
-				<label for="sendsms-fwc-mb-phone"><?php esc_html_e( 'Phone', 'sendsms-for-woocommerce' ); ?></label><br />
-				<input type="text" id="sendsms-fwc-mb-phone" style="width: 100%;" value="<?php echo esc_attr( $billing_phone ); ?>" />
+				<label for="sendsmsro-mb-phone"><?php esc_html_e( 'Phone', 'sendsms-for-woocommerce' ); ?></label><br />
+				<input type="text" id="sendsmsro-mb-phone" style="width: 100%;" value="<?php echo esc_attr( $billing_phone ); ?>" />
 			</p>
 
 			<p>
-				<label><input type="checkbox" id="sendsms-fwc-mb-short" /> <?php esc_html_e( 'Short URL', 'sendsms-for-woocommerce' ); ?></label>
+				<label><input type="checkbox" id="sendsmsro-mb-short" /> <?php esc_html_e( 'Short URL', 'sendsms-for-woocommerce' ); ?></label>
 			</p>
 
 			<p>
-				<label><input type="checkbox" id="sendsms-fwc-mb-gdpr" /> <?php esc_html_e( 'Append unsubscribe link', 'sendsms-for-woocommerce' ); ?></label>
+				<label><input type="checkbox" id="sendsmsro-mb-gdpr" /> <?php esc_html_e( 'Append unsubscribe link', 'sendsms-for-woocommerce' ); ?></label>
 			</p>
 
 			<p>
-				<label for="sendsms-fwc-mb-content"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label><br />
-				<textarea id="sendsms-fwc-mb-content" class="sendsms-fwc-content" style="width: 100%; height: 100px;"></textarea>
-				<small class="description sendsms-fwc-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></small>
+				<label for="sendsmsro-mb-content"><?php esc_html_e( 'Message', 'sendsms-for-woocommerce' ); ?></label><br />
+				<textarea id="sendsmsro-mb-content" class="sendsmsro-content" style="width: 100%; height: 100px;"></textarea>
+				<small class="description sendsmsro-length-counter"><?php esc_html_e( 'The field is empty.', 'sendsms-for-woocommerce' ); ?></small>
 			</p>
 
 			<p>
-				<button type="button" class="button button-primary" id="sendsms-fwc-mb-send"><?php esc_html_e( 'Send the message', 'sendsms-for-woocommerce' ); ?></button>
+				<button type="button" class="button button-primary" id="sendsmsro-mb-send"><?php esc_html_e( 'Send the message', 'sendsms-for-woocommerce' ); ?></button>
 			</p>
 		</div>
 		<?php

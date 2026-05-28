@@ -2,21 +2,21 @@
 /**
  * Top-level plugin loader. Holds the wiring graph between subsystems.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce;
+namespace Sendsmsro\ForWooCommerce;
 
-use SendSMS\ForWooCommerce\Admin\Menu;
-use SendSMS\ForWooCommerce\Admin\OrderMetabox;
-use SendSMS\ForWooCommerce\Ajax\CampaignHandler;
-use SendSMS\ForWooCommerce\Ajax\SingleSendHandler;
-use SendSMS\ForWooCommerce\Api\Client;
-use SendSMS\ForWooCommerce\Order\NewOrderListener;
-use SendSMS\ForWooCommerce\Order\OptOut;
-use SendSMS\ForWooCommerce\Order\StatusListener;
-use SendSMS\ForWooCommerce\Storage\HistoryRepository;
-use SendSMS\ForWooCommerce\Storage\Settings;
+use Sendsmsro\ForWooCommerce\Admin\Menu;
+use Sendsmsro\ForWooCommerce\Admin\OrderMetabox;
+use Sendsmsro\ForWooCommerce\Ajax\CampaignHandler;
+use Sendsmsro\ForWooCommerce\Ajax\SingleSendHandler;
+use Sendsmsro\ForWooCommerce\Api\Client;
+use Sendsmsro\ForWooCommerce\Order\NewOrderListener;
+use Sendsmsro\ForWooCommerce\Order\OptOut;
+use Sendsmsro\ForWooCommerce\Order\StatusListener;
+use Sendsmsro\ForWooCommerce\Storage\HistoryRepository;
+use Sendsmsro\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -51,7 +51,7 @@ final class Plugin {
 	private $settings = null;
 
 	/**
-	 * History repository ({prefix}wcsendsms_history).
+	 * History repository ({prefix}sendsmsro_history).
 	 *
 	 * @var HistoryRepository|null
 	 */
@@ -133,7 +133,7 @@ final class Plugin {
 				load_plugin_textdomain(
 					'sendsms-for-woocommerce',
 					false,
-					dirname( SENDSMS_FWC_BASENAME ) . '/languages'
+					dirname( SENDSMSRO_BASENAME ) . '/languages'
 				);
 			}
 		);

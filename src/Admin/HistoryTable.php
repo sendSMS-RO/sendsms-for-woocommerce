@@ -2,12 +2,12 @@
 /**
  * WP_List_Table for the SMS history.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Admin;
+namespace Sendsmsro\ForWooCommerce\Admin;
 
-use SendSMS\ForWooCommerce\Storage\HistoryRepository;
+use Sendsmsro\ForWooCommerce\Storage\HistoryRepository;
 use WP_List_Table;
 
 defined( 'ABSPATH' ) || exit;

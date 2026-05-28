@@ -2,19 +2,19 @@
  * Campaign page: send + estimate.
  *
  * Depends on jQuery (for the wc-enhanced-select integration) and the
- * `SendSmsFwcCampaign` global injected via wp_localize_script.
+ * `SendsmsroCampaign` global injected via wp_localize_script.
  */
 (function ($) {
 	'use strict';
 
 	$(document).ready(function () {
-		var $form     = $('#sendsms-fwc-campaign-form');
-		var $sendBtn  = $('#sendsms-fwc-campaign-send');
-		var $estBtn   = $('#sendsms-fwc-campaign-estimate');
-		var $message  = $('#sendsms-fwc-campaign-message');
-		var $allFlag  = $('#sendsms-fwc-send-to-all');
-		var $phones   = $('#sendsms-fwc-phones');
-		var cfg       = window.SendSmsFwcCampaign || {};
+		var $form     = $('#sendsmsro-campaign-form');
+		var $sendBtn  = $('#sendsmsro-campaign-send');
+		var $estBtn   = $('#sendsmsro-campaign-estimate');
+		var $message  = $('#sendsmsro-campaign-message');
+		var $allFlag  = $('#sendsmsro-send-to-all');
+		var $phones   = $('#sendsmsro-phones');
+		var cfg       = window.SendsmsroCampaign || {};
 
 		$form.on('submit', function (event) {
 			event.preventDefault();
@@ -42,7 +42,7 @@
 
 			var data = $.extend(
 				{
-					action:   'wc_sendsms_campaign',
+					action:   'sendsmsro_campaign',
 					security: cfg.nonce,
 					all:      sendToAll ? 'true' : 'false',
 					phones:   phones,

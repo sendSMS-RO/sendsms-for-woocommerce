@@ -2,26 +2,27 @@
 /**
  * Checkout opt-out checkbox + order meta.
  *
- * @package SendSMS\ForWooCommerce
+ * @package Sendsmsro\ForWooCommerce
  */
 
-namespace SendSMS\ForWooCommerce\Order;
+namespace Sendsmsro\ForWooCommerce\Order;
 
-use SendSMS\ForWooCommerce\Plugin;
-use SendSMS\ForWooCommerce\Storage\Settings;
+use Sendsmsro\ForWooCommerce\Plugin;
+use Sendsmsro\ForWooCommerce\Storage\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Renders the "I don't want SMS" checkbox at checkout and persists the choice
- * to order meta as `wc_sendsms_optout` (preserved from v1.x).
+ * to order meta as `sendsmsro_optout` (the legacy v1.x `wc_sendsms_optout`
+ * meta is renamed on activation by {@see Install::migrate_from_v1()}).
  */
 final class OptOut {
 
 	/**
 	 * Order meta key. Read by {@see StatusListener::on_status_changed()}.
 	 */
-	const META_KEY = 'wc_sendsms_optout';
+	const META_KEY = 'sendsmsro_optout';
 
 	/**
 	 * Register hooks.
@@ -48,15 +49,15 @@ final class OptOut {
 			return;
 		}
 
-		echo '<div class="sendsms-fwc-optout-wrap">';
+		echo '<div class="sendsmsro-optout-wrap">';
 		woocommerce_form_field(
-			'wc_sendsms_optout',
+			'sendsmsro_optout',
 			array(
 				'type'  => 'checkbox',
 				'class' => array( 'input-checkbox', 'form-row-wide' ),
 				'label' => __( 'I do not want to receive SMS notifications about this order.', 'sendsms-for-woocommerce' ),
 			),
-			$checkout->get_value( 'wc_sendsms_optout' )
+			$checkout->get_value( 'sendsmsro_optout' )
 		);
 		echo '</div><div style="clear: both">&nbsp;</div>';
 	}
@@ -69,7 +70,7 @@ final class OptOut {
 	 */
 	public function save_choice( int $order_id ): void {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified by WooCommerce checkout.
-		if ( ! isset( $_POST['wc_sendsms_optout'] ) ) {
+		if ( ! isset( $_POST['sendsmsro_optout'] ) ) {
 			return;
 		}
 		$order = wc_get_order( $order_id );
@@ -77,7 +78,7 @@ final class OptOut {
 			return;
 		}
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$order->update_meta_data( self::META_KEY, (string) $_POST['wc_sendsms_optout'] ? 1 : 0 );
+		$order->update_meta_data( self::META_KEY, (string) $_POST['sendsmsro_optout'] ? 1 : 0 );
 		$order->save();
 	}
 }
