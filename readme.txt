@@ -75,6 +75,17 @@ Third-party terms of service and privacy:
 * GDPR / privacy: https://www.sendsms.ro/en/gdpr/
 * ISO 27001 certification: https://www.sendsms.ro/en/iso-27001-certified/
 
+== Screenshots ==
+
+1. The SendSMS overview screen, listing how status notifications work and the available message placeholders.
+2. Configuration — Account tab: enter your sendsms.ro credentials, sender label, country normalisation and optional simulation mode.
+3. Configuration — Customer notifications: a message template per WooCommerce order status, each with Enabled, Short URL and Unsubscribe toggles.
+4. Configuration — Owner notification: send yourself an SMS for every new order, with its own template.
+5. History: a searchable, sortable log of every SMS the plugin has sent.
+6. Campaign: filter past orders by date, product or county and send a bulk SMS to the matching customers.
+7. Send a test: send a one-off SMS to any number to preview your templates.
+8. The per-order "Send SMS" metabox, for sending a one-off message straight from the order screen.
+
 == Upgrade Notice ==
 = 2.0.3 =
 Plugin prefix changed to `rosendsms_`. Existing data from any earlier version is migrated automatically on activation — no manual reconfiguration required.
