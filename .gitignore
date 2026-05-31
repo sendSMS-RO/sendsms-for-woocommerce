@@ -1,10 +1,29 @@
+# OS / editor
 .DS_Store
+
+# Claude Code / AI working files — never ship these in the plugin or to SVN
 .claude/
 CLAUDE.md
+AGENTS.md
+GEMINI.md
+.cursorrules
+.cursor/
+.notes/
+*.plan.md
+PLAN.md
+PLANS.md
+SPEC.md
+ONBOARDING.md
+NOTES.md
+REVIEW.md
+
+# Dev tooling (composer + linters) — not part of the shipped plugin
 /vendor/
 /node_modules/
 composer.lock
 .phpcs-cache
 .phpunit.result.cache
+
+# Build output
 *.zip
 /dist/
